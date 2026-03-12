@@ -703,6 +703,28 @@ svg {
   justify-content: center;
 }
 
+.feature__visual--dual {
+  gap: 16px;
+  align-items: flex-start;
+}
+
+.feature-screenshot {
+  width: min(100%, 280px);
+  border-radius: 28px;
+  box-shadow: var(--shadow);
+  border: 1px solid rgba(255, 255, 255, 0.08);
+}
+
+.feature__visual--dual .feature-screenshot {
+  width: calc(50% - 8px);
+}
+
+.hero-screenshot {
+  width: 100%;
+  border-radius: 30px;
+  display: block;
+}
+
 .screen-card {
   width: min(100%, 430px);
   padding: 24px;
@@ -1121,6 +1143,19 @@ svg {
 
   .screen-card {
     padding: 18px;
+  }
+
+  .feature-screenshot {
+    width: min(100%, 240px);
+    border-radius: 22px;
+  }
+
+  .feature__visual--dual .feature-screenshot {
+    width: calc(50% - 6px);
+  }
+
+  .feature__visual--dual {
+    gap: 12px;
   }
 
   .ring-cluster {

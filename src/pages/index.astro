@@ -9,37 +9,6 @@ const overviewStats = [
   { value: "3 views", label: "to spot your pattern" }
 ];
 
-const heroCards = [
-  {
-    title: "Some long habit name that does...",
-    tone: "blue",
-    alerts: ["2", "1", "12"],
-    action: "done",
-    activeCells: [5, 6, 12, 13, 19, 21, 26, 27, 28, 33, 34, 35, 40, 41]
-  },
-  {
-    title: "2",
-    tone: "green",
-    alerts: ["0", "2", "2"],
-    action: "add",
-    activeCells: [3, 10, 17, 18, 25, 32, 39]
-  },
-  {
-    title: "3",
-    tone: "teal",
-    alerts: ["0", "4", "4"],
-    action: "timer",
-    activeCells: [6, 13, 20, 27, 34, 35, 42]
-  },
-  {
-    title: "Foo",
-    tone: "cyan",
-    alerts: ["0", "1", "2"],
-    action: "add",
-    activeCells: [6, 14, 22, 29, 36]
-  }
-];
-
 const upcomingItems = [
   {
     title: "Shared habits",
@@ -54,30 +23,6 @@ const upcomingItems = [
     text: "Auto-generated summaries to surface the habits that actually stick."
   }
 ];
-
-const iconPaths = {
-  blue: "M12 3.5l2.45 4.96 5.47.79-3.96 3.86.93 5.45L12 16.98 7.11 18.56l.93-5.45-3.96-3.86 5.47-.79L12 3.5z",
-  green: "M12 4l2.2 4.46L19 9.15l-3.5 3.4.83 4.8L12 15.74 7.67 17.35l.83-4.8L5 9.15l4.8-.69L12 4z",
-  teal: "M12 3.5l1.74 5.36h5.64l-4.56 3.31 1.74 5.36L12 14.22 7.44 17.53l1.74-5.36-4.56-3.31h5.64L12 3.5z",
-  cyan: "M10.08 5.18A1 1 0 0111 4.5h2a1 1 0 01.92.68l.78 2.32 2.44.84a1 1 0 01.6 1.47l-1.46 2.18 1.46 2.18a1 1 0 01-.6 1.47l-2.44.84-.78 2.32A1 1 0 0113 19.5h-2a1 1 0 01-.92-.68l-.78-2.32-2.44-.84a1 1 0 01-.6-1.47L6.72 12 5.26 9.82a1 1 0 01.6-1.47l2.44-.84.78-2.32z"
-};
-
-const actionLabels = {
-  done: "check",
-  add: "add",
-  timer: "timer"
-};
-
-const months = ["Dec", "Jan", "Feb", "Mar"];
-
-const renderCells = (activeCells) =>
-  Array.from({ length: 49 }, (_, index) => ({
-    active: activeCells.includes(index)
-  }));
-
-const focusHeatmap = renderCells([4, 5, 11, 12, 18, 24, 25, 26, 31, 38, 45]);
-const rhythmHeatmap = renderCells([0, 2, 9, 10, 17, 18, 24, 31, 32, 39, 46, 47]);
-const clarityHeatmap = renderCells([6, 12, 13, 19, 25, 26, 33, 34, 40, 41, 48]);
 ---
 
 <!doctype html>
@@ -157,81 +102,7 @@ const clarityHeatmap = renderCells([6, 12, 13, 19, 25, 26, 33, 34, 40, 41, 48]);
             </div>
 
             <div class="device-frame">
-              <div class="device-frame__notch"></div>
-              <div class="device-screen">
-                <div class="status-bar">
-                  <span>11:42</span>
-                  <div class="status-bar__icons">
-                    <span></span>
-                    <span></span>
-                    <span></span>
-                  </div>
-                </div>
-
-                <div class="screen-icons">
-                  <div class="screen-app-icon">
-                    <span></span>
-                  </div>
-                  <div class="screen-app-icon screen-app-icon--small">
-                    <span></span>
-                  </div>
-                </div>
-
-                <div class="habit-list">
-                  {
-                    heroCards.map((card, index) => (
-                      <article class:list={["habit-card", `habit-card--${card.tone}`, index === 0 && "is-selected"]}>
-                        <div class="habit-card__header">
-                          <div class="habit-card__title-wrap">
-                            <div class="habit-card__icon">
-                              <svg viewBox="0 0 24 24" aria-hidden="true">
-                                <path d={iconPaths[card.tone]}></path>
-                              </svg>
-                            </div>
-                            <div>
-                              <h2>{card.title}</h2>
-                              <div class="habit-card__chips">
-                                <span>{card.alerts[0]}</span>
-                                <span>{card.alerts[1]}</span>
-                                <span>{card.alerts[2]}</span>
-                              </div>
-                            </div>
-                          </div>
-
-                          <button class="habit-card__action" type="button" aria-label={actionLabels[card.action]}>
-                            {
-                              card.action === "done" ? (
-                                <svg viewBox="0 0 24 24" aria-hidden="true">
-                                  <path d="M9.6 16.2L5.8 12.4l-1.4 1.4 5.2 5.2L20 8.6l-1.4-1.4z"></path>
-                                </svg>
-                              ) : card.action === "add" ? (
-                                <svg viewBox="0 0 24 24" aria-hidden="true">
-                                  <path d="M11 5h2v14h-2zM5 11h14v2H5z"></path>
-                                </svg>
-                              ) : (
-                                <svg viewBox="0 0 24 24" aria-hidden="true">
-                                  <path d="M12 7h1.4v5.1l4.1 2.4-.7 1.2L12 13V7zm0-5a10 10 0 100 20 10 10 0 000-20zm0 1.6a8.4 8.4 0 110 16.8 8.4 8.4 0 010-16.8z"></path>
-                                </svg>
-                              )
-                            }
-                          </button>
-                        </div>
-
-                        <div class="habit-card__months">
-                          {months.map((month) => <span>{month}</span>)}
-                        </div>
-                        <div class="heatmap">
-                          {
-                            renderCells(card.activeCells).map((cell) => (
-                              <span class:list={["heatmap__cell", cell.active && "is-active"]}></span>
-                            ))
-                          }
-                        </div>
-                      </article>
-                    ))
-                  }
-                </div>
-              </div>
+              <img src="/screenshots/1.PNG" alt="Habiterr app screenshot" class="hero-screenshot" />
             </div>
           </div>
         </div>
@@ -251,141 +122,101 @@ const clarityHeatmap = renderCells([6, 12, 13, 19, 25, 26, 33, 34, 40, 41, 48]);
         <section class="section features" id="features">
           <article class="feature feature--reverse">
             <div class="feature__copy">
-              <p class="feature__eyebrow">Visual focus</p>
-              <h3>See your streaks in one glance.</h3>
+              <p class="feature__eyebrow">Clean interface</p>
+              <h3>Built for daily use, not daily frustration.</h3>
               <p>
-                Dense heatmaps make it obvious where momentum is building. Bright wins stay visible without turning the whole interface into noise.
+                A compact layout that puts stats and check-ins front and center. See streaks, completion rates, and heatmaps at a glance — then move on with your day.
               </p>
               <ul class="feature__list">
-                <li>Fast check-ins from the main list</li>
-                <li>Long habit names still stay readable</li>
-                <li>Color-coded status without clutter</li>
+                <li>Per-habit stats with streaks and completion rates</li>
+                <li>Compact card layout fits more habits on screen</li>
+                <li>One-tap checking — no extra screens or menus</li>
+                <li>Dark theme that feels calm, not clinical</li>
               </ul>
             </div>
 
-            <div class="feature__visual">
-              <div class="screen-card">
-                <div class="screen-card__header">
-                  <span>Focus</span>
-                  <strong>Weekly streaks</strong>
-                </div>
-                <div class="screen-card__metric-row">
-                  <div class="screen-card__metric is-blue">
-                    <strong>17</strong>
-                    <span>best streak</span>
-                  </div>
-                  <div class="screen-card__metric is-emerald">
-                    <strong>86%</strong>
-                    <span>completion</span>
-                  </div>
-                </div>
-                <div class="mini-months">
-                  {months.map((month) => <span>{month}</span>)}
-                </div>
-                <div class="heatmap heatmap--focus">
-                  {
-                    focusHeatmap.map((cell) => (
-                      <span class:list={["heatmap__cell", cell.active && "is-active"]}></span>
-                    ))
-                  }
-                </div>
-              </div>
+            <div class="feature__visual feature__visual--dual">
+              <img src="/screenshots/1.PNG" alt="Habiterr main habit list" class="feature-screenshot" />
+              <img src="/screenshots/2.PNG" alt="Habiterr habit detail view" class="feature-screenshot" />
             </div>
           </article>
 
           <article class="feature">
             <div class="feature__copy">
-              <p class="feature__eyebrow">Gentle structure</p>
-              <h3>Make daily progress feel tactile, not heavy.</h3>
+              <p class="feature__eyebrow">Smart integrations</p>
+              <h3>Let your data do the checking for you.</h3>
               <p>
-                Each habit card keeps the controls close and the state obvious. The interface keeps you moving instead of making you manage a dashboard.
+                Connect habits to HealthKit and other sources so progress logs itself. Set custom checking rules and let integrations handle the rest — with more sources on the way.
               </p>
               <ul class="feature__list">
-                <li>Tap targets designed for one-handed use</li>
-                <li>Primary actions always visible</li>
-                <li>Consistent glow and contrast on dark mode</li>
+                <li>HealthKit integration for steps, workouts, and more</li>
+                <li>Flexible checking rules per habit</li>
+                <li>Auto-check habits based on real activity data</li>
+                <li>More integrations coming soon</li>
               </ul>
             </div>
 
-            <div class="feature__visual">
-              <div class="screen-card screen-card--rings">
-                <div class="screen-card__header">
-                  <span>Rhythm</span>
-                  <strong>Today at a glance</strong>
-                </div>
-                <div class="ring-cluster">
-                  <div class="ring ring--lg">
-                    <div>
-                      <strong>4/5</strong>
-                      <span>done</span>
-                    </div>
-                  </div>
-                  <div class="ring-stack">
-                    <div class="ring ring--sm ring--blue">
-                      <div>
-                        <strong>82%</strong>
-                        <span>week</span>
-                      </div>
-                    </div>
-                    <div class="ring ring--sm ring--teal">
-                      <div>
-                        <strong>12</strong>
-                        <span>days</span>
-                      </div>
-                    </div>
-                  </div>
-                </div>
-                <div class="heatmap heatmap--rhythm">
-                  {
-                    rhythmHeatmap.map((cell) => (
-                      <span class:list={["heatmap__cell", cell.active && "is-active"]}></span>
-                    ))
-                  }
-                </div>
-              </div>
+            <div class="feature__visual feature__visual--dual">
+              <img src="/screenshots/3.PNG" alt="Habiterr integrations setup" class="feature-screenshot" />
+              <img src="/screenshots/6.PNG" alt="Habiterr HealthKit integration" class="feature-screenshot" />
             </div>
           </article>
 
           <article class="feature feature--reverse">
             <div class="feature__copy">
-              <p class="feature__eyebrow">Pattern clarity</p>
-              <h3>Review your habits without drowning in charts.</h3>
+              <p class="feature__eyebrow">Balance chart</p>
+              <h3>See the bigger picture of your progress.</h3>
               <p>
-                Habiterr keeps the insights layer readable: enough structure to spot misses and rebounds, without turning the app into analytics software.
+                The balance chart gives you a visual snapshot of how your habits trend over time. Spot patterns, catch slumps early, and stay on course without overthinking.
               </p>
               <ul class="feature__list">
-                <li>Readable weekly snapshots</li>
-                <li>Simple cards for habits that need attention</li>
-                <li>Space for future coaching and reminders</li>
+                <li>Visual trend line across all your habits</li>
+                <li>Quickly spot dips and rebounds</li>
+                <li>Progress tracking that motivates, not overwhelms</li>
               </ul>
             </div>
 
             <div class="feature__visual">
-              <div class="screen-card screen-card--insights">
-                <div class="screen-card__header">
-                  <span>Clarity</span>
-                  <strong>Review patterns</strong>
-                </div>
-                <div class="insight-stack">
-                  <div class="insight-tile">
-                    <small>Most consistent</small>
-                    <strong>Morning walk</strong>
-                    <span>10 completed in a row</span>
-                  </div>
-                  <div class="insight-tile insight-tile--accent">
-                    <small>Needs attention</small>
-                    <strong>Read 20 min</strong>
-                    <span>2 misses this week</span>
-                  </div>
-                </div>
-                <div class="heatmap heatmap--clarity">
-                  {
-                    clarityHeatmap.map((cell) => (
-                      <span class:list={["heatmap__cell", cell.active && "is-active"]}></span>
-                    ))
-                  }
-                </div>
-              </div>
+              <img src="/screenshots/4.PNG" alt="Habiterr balance chart" class="feature-screenshot" />
+            </div>
+          </article>
+
+          <article class="feature">
+            <div class="feature__copy">
+              <p class="feature__eyebrow">iOS widgets</p>
+              <h3>Your habits, always one glance away.</h3>
+              <p>
+                Add widgets to your home screen to keep habits visible without opening the app. Quick-check directly from the widget and stay on track throughout the day.
+              </p>
+              <ul class="feature__list">
+                <li>Home screen widgets for habit overview</li>
+                <li>Quick check-in right from the widget</li>
+                <li>Keep habits visible without opening the app</li>
+              </ul>
+            </div>
+
+            <div class="feature__visual">
+              <img src="/screenshots/5.PNG" alt="Habiterr iOS widgets" class="feature-screenshot" />
+            </div>
+          </article>
+
+          <article class="feature feature--reverse">
+            <div class="feature__copy">
+              <p class="feature__eyebrow">Timers & counters</p>
+              <h3>Track more than just done or not done.</h3>
+              <p>
+                Some habits need precision. Use built-in timers for exercise sessions, reading time, or meditation — and counters for pages read, glasses of water, or reps completed.
+              </p>
+              <ul class="feature__list">
+                <li>Built-in timer for time-based habits</li>
+                <li>Counter mode for quantity-based tracking</li>
+                <li>Track pages, minutes, reps, and more</li>
+              </ul>
+            </div>
+
+            <div class="feature__visual feature__visual--dual">
+              <img src="/screenshots/7.PNG" alt="Habiterr timer habit" class="feature-screenshot" />
+              <img src="/screenshots/8.PNG" alt="Habiterr counter habit" class="feature-screenshot" />
             </div>
           </article>
         </section>
