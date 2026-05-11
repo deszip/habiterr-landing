@@ -1,0 +1,57 @@
+---
+interface Props {
+  name: string;
+  price: string;
+  period: string;
+  badge?: string;
+  featured?: boolean;
+  bestValue?: boolean;
+  blurb: string;
+}
+const { name, price, period, badge, featured = false, bestValue = false, blurb } = Astro.props;
+---
+
+<article
+  class={`pricing-card card p-7 flex flex-col gap-5 relative ${featured ? "is-featured" : ""}`}
+>
+  {
+    badge && (
+      <span
+        class="badge absolute -top-3 left-1/2 -translate-x-1/2"
+        style={
+          featured
+            ? "background: linear-gradient(135deg,#a47bff,#7a4dff); color:#fff;"
+            : bestValue
+              ? "background: rgba(77,217,192,0.18); color:#4dd9c0; border:1px solid rgba(77,217,192,0.35);"
+              : "background:#1a1a1f; color:#fff; border:1px solid var(--color-stroke);"
+        }
+      >
+        {badge}
+      </span>
+    )
+  }
+
+  <div class="flex items-baseline justify-between">
+    <h3 class="text-lg font-semibold">{name}</h3>
+    {featured && <span class="text-[10px] uppercase tracking-widest text-[#c4b0ff]">Most Popular</span>}
+    {bestValue && <span class="text-[10px] uppercase tracking-widest text-[#4dd9c0]">Best Value</span>}
+  </div>
+
+  <div class="flex items-baseline gap-1">
+    <span class="font-display font-bold text-4xl tracking-tight">{price}</span>
+    <span class="text-[var(--color-text-muted)] text-sm">{period}</span>
+  </div>
+
+  <p class="text-sm text-[var(--color-text-muted)] leading-relaxed">{blurb}</p>
+
+  <ul class="text-sm flex flex-col gap-2 mt-1">
+    <slot />
+  </ul>
+
+  <a
+    href="https://apps.apple.com/app/habiterr"
+    class={`btn mt-auto ${featured ? "btn-primary" : "btn-ghost"}`}
+  >
+    Get {name}
+  </a>
+</article>

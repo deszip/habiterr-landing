@@ -1,0 +1,73 @@
+---
+import RadarChart from "./RadarChart.astro";
+import MetricRing from "./MetricRing.astro";
+---
+
+<section id="top" class="relative pt-32 pb-16 md:pt-40 md:pb-24 overflow-hidden">
+  <div class="container-page grid lg:grid-cols-[1.05fr_1fr] gap-14 lg:gap-20 items-center">
+    <div class="reveal max-w-xl">
+      <span class="eyebrow">iOS · Habits, redesigned</span>
+      <h1 class="h-display mt-5">
+        Track every <span class="text-gradient-brand">habit you have.</span>
+      </h1>
+      <p class="mt-6 text-lg text-[var(--color-text-muted)] leading-relaxed max-w-lg">
+        Most apps punish you for missing a day. Habiterr uses gentle streaks
+        that forgive occasional slips — so you keep going.
+      </p>
+
+      <div class="mt-9 flex flex-wrap items-center gap-3">
+        <a href="https://apps.apple.com/app/habiterr" class="btn btn-primary">
+          Download Free
+        </a>
+        <a href="#features" class="btn btn-ghost">See how it works</a>
+      </div>
+
+      <div class="mt-10 flex items-center gap-4 text-xs text-[var(--color-text-subtle)]">
+        <div class="flex -space-x-1.5">
+          {
+            ["#4dd9c0", "#9b6dff", "#f97316", "#4ade80"].map((c) => (
+              <span
+                class="w-6 h-6 rounded-full border border-[var(--color-bg-primary)]"
+                style={`background:${c}`}
+              />
+            ))
+          }
+        </div>
+        <span>iOS 17+ · No ads · No social feed</span>
+      </div>
+    </div>
+
+    <div class="reveal relative">
+      <div class="card p-6 md:p-8 relative overflow-hidden">
+        <div class="flex items-center justify-between mb-2">
+          <div>
+            <div class="text-xs uppercase tracking-widest text-[var(--color-text-subtle)]">
+              Today
+            </div>
+            <div class="text-base font-medium">Your Habit Radar</div>
+          </div>
+          <span class="badge" style="background: rgba(77,217,192,0.12); color:#4dd9c0;">
+            Live
+          </span>
+        </div>
+
+        <RadarChart size={420} />
+
+        <div class="mt-4 grid grid-cols-2 gap-3">
+          <div
+            class="card-inner p-4"
+            style="border-color: rgba(249,115,22,0.25); background: linear-gradient(180deg, rgba(249,115,22,0.07), rgba(249,115,22,0.02));"
+          >
+            <MetricRing value={33} label="Consistency" color="#f97316" />
+          </div>
+          <div
+            class="card-inner p-4"
+            style="border-color: rgba(155,109,255,0.25); background: linear-gradient(180deg, rgba(155,109,255,0.06), rgba(155,109,255,0.02));"
+          >
+            <MetricRing value={87} label="Balance" color="#9b6dff" />
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+</section>

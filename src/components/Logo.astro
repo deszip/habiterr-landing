@@ -1,0 +1,54 @@
+---
+interface Props {
+  size?: number;
+  showWordmark?: boolean;
+}
+const { size = 28, showWordmark = true } = Astro.props;
+---
+
+<a href="#top" class="inline-flex items-center gap-2 group">
+  <span
+    class="relative inline-flex items-center justify-center rounded-xl"
+    style={`width:${size}px; height:${size}px;`}
+  >
+    <span
+      class="absolute inset-0 rounded-xl blur-md opacity-70 group-hover:opacity-100 transition-opacity"
+      style="background: radial-gradient(circle, rgba(77,217,192,0.7), transparent 70%);"
+    ></span>
+    <svg
+      viewBox="0 0 32 32"
+      width={size}
+      height={size}
+      fill="none"
+      aria-hidden="true"
+      class="relative"
+    >
+      <defs>
+        <linearGradient id="logo-grad" x1="0" y1="0" x2="1" y2="1">
+          <stop offset="0" stop-color="#9b6dff" />
+          <stop offset="1" stop-color="#4dd9c0" />
+        </linearGradient>
+      </defs>
+      <polygon
+        points="16,3 27,9.5 27,22.5 16,29 5,22.5 5,9.5"
+        stroke="url(#logo-grad)"
+        stroke-width="1.6"
+      />
+      <polygon
+        points="16,9 22,12.5 22,19.5 16,23 10,19.5 10,12.5"
+        fill="url(#logo-grad)"
+        opacity="0.85"
+      />
+    </svg>
+  </span>
+  {
+    showWordmark && (
+      <span
+        class="font-display font-semibold text-[1.05rem] tracking-tight text-white"
+        style="font-family: var(--font-display);"
+      >
+        Habiterr
+      </span>
+    )
+  }
+</a>

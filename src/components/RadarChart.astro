@@ -1,0 +1,135 @@
+---
+interface Props {
+  size?: number;
+}
+const { size = 360 } = Astro.props;
+
+const cx = 200;
+const cy = 200;
+const R = 140;
+
+const axes = [
+  { label: "Water", color: "#4dd9c0" },
+  { label: "Exercise", color: "#4ade80" },
+  { label: "Reading", color: "#9b6dff" },
+  { label: "Sleep", color: "#c4b0ff" },
+  { label: "Journaling", color: "#f97316" },
+  { label: "Nutrition", color: "#fbbf24" },
+];
+
+const pointOnAxis = (i: number, v: number) => {
+  const angle = -Math.PI / 2 + (i * 2 * Math.PI) / axes.length;
+  const r = R * v;
+  return [cx + Math.cos(angle) * r, cy + Math.sin(angle) * r];
+};
+
+const toPoints = (vals: number[]) =>
+  vals.map((v, i) => pointOnAxis(i, v).map((n) => n.toFixed(1)).join(",")).join(" ");
+
+const stateZero = [0, 0, 0, 0, 0, 0];
+const stateImbalanced = [0.95, 0.85, 0.2, 0.4, 0.15, 0.55];
+const stateBalanced = [0.82, 0.78, 0.75, 0.8, 0.7, 0.85];
+
+const pZero = toPoints(stateZero);
+const pImbalanced = toPoints(stateImbalanced);
+const pBalanced = toPoints(stateBalanced);
+
+const rings = [0.25, 0.5, 0.75, 1];
+const labelDist = R + 26;
+---
+
+<div class="relative" style={`width: 100%; max-width: ${size}px; margin-inline: auto;`}>
+  <div
+    class="absolute -inset-10 -z-10 rounded-full opacity-70"
+    style="background: radial-gradient(circle, rgba(155,109,255,0.35), rgba(77,217,192,0.18) 50%, transparent 75%); filter: blur(40px);"
+    aria-hidden="true"
+  ></div>
+
+  <svg
+    viewBox="0 0 400 400"
+    width="100%"
+    role="img"
+    aria-label="Animated radar chart showing six habit axes morphing between empty, imbalanced, and balanced states."
+  >
+    <defs>
+      <radialGradient id="radar-fill" cx="50%" cy="50%" r="50%">
+        <stop offset="0%" stop-color="#9b6dff" stop-opacity="0.45" />
+        <stop offset="100%" stop-color="#4dd9c0" stop-opacity="0.25" />
+      </radialGradient>
+      <linearGradient id="radar-stroke" x1="0" y1="0" x2="1" y2="1">
+        <stop offset="0" stop-color="#9b6dff" />
+        <stop offset="1" stop-color="#4dd9c0" />
+      </linearGradient>
+    </defs>
+
+    {
+      rings.map((f) => (
+        <polygon
+          points={toPoints(new Array(axes.length).fill(f))}
+          fill="none"
+          stroke="rgba(255,255,255,0.06)"
+          stroke-width="1"
+        />
+      ))
+    }
+
+    {
+      axes.map((_, i) => {
+        const [x, y] = pointOnAxis(i, 1);
+        return (
+          <line
+            x1={cx}
+            y1={cy}
+            x2={x}
+            y2={y}
+            stroke="rgba(255,255,255,0.05)"
+            stroke-width="1"
+          />
+        );
+      })
+    }
+
+    <polygon
+      class="radar-poly"
+      style={`--p-zero: ${pZero}; --p-imbalanced: ${pImbalanced}; --p-balanced: ${pBalanced}; points: ${pBalanced};`}
+      points={pBalanced}
+      fill="url(#radar-fill)"
+      stroke="url(#radar-stroke)"
+      stroke-width="2"
+      stroke-linejoin="round"
+    />
+
+    {
+      axes.map((a, i) => {
+        const angle = -Math.PI / 2 + (i * 2 * Math.PI) / axes.length;
+        const lx = cx + Math.cos(angle) * labelDist;
+        const ly = cy + Math.sin(angle) * labelDist;
+        const [dx, dy] = pointOnAxis(i, 1);
+        return (
+          <g>
+            <circle
+              cx={dx}
+              cy={dy}
+              r="3"
+              fill={a.color}
+              opacity="0.7"
+            />
+            <text
+              x={lx}
+              y={ly}
+              text-anchor="middle"
+              dominant-baseline="middle"
+              fill="rgba(245,245,247,0.78)"
+              font-size="11"
+              font-weight="500"
+              font-family="Inter, system-ui, sans-serif"
+              letter-spacing="0.02em"
+            >
+              {a.label}
+            </text>
+          </g>
+        );
+      })
+    }
+  </svg>
+</div>

@@ -1,0 +1,46 @@
+---
+import Logo from "./Logo.astro";
+import AppStoreBadge from "./AppStoreBadge.astro";
+---
+
+<footer class="border-t border-[var(--color-stroke)] mt-20 pb-12 pt-16">
+  <div class="container-page grid md:grid-cols-[1.2fr_1fr_1fr] gap-10">
+    <div class="max-w-sm">
+      <Logo size={28} />
+      <p class="mt-4 text-[var(--color-text-muted)] text-sm leading-relaxed">
+        Build habits that last.
+      </p>
+      <div class="mt-6">
+        <AppStoreBadge />
+      </div>
+    </div>
+
+    <div>
+      <div class="text-xs uppercase tracking-widest text-[var(--color-text-subtle)] mb-4">
+        Product
+      </div>
+      <ul class="space-y-3 text-sm">
+        <li><a href="#features" class="text-[var(--color-text-muted)] hover:text-white transition-colors">Features</a></li>
+        <li><a href="#metrics" class="text-[var(--color-text-muted)] hover:text-white transition-colors">Metrics</a></li>
+        <li><a href="#pricing" class="text-[var(--color-text-muted)] hover:text-white transition-colors">Pricing</a></li>
+        <li><a href="#compare" class="text-[var(--color-text-muted)] hover:text-white transition-colors">Compare</a></li>
+      </ul>
+    </div>
+
+    <div>
+      <div class="text-xs uppercase tracking-widest text-[var(--color-text-subtle)] mb-4">
+        Legal
+      </div>
+      <ul class="space-y-3 text-sm">
+        <li><a href="/privacy" class="text-[var(--color-text-muted)] hover:text-white transition-colors">Privacy</a></li>
+        <li><a href="/eula" class="text-[var(--color-text-muted)] hover:text-white transition-colors">EULA</a></li>
+        <li><a href="mailto:hello@habiterr.app" class="text-[var(--color-text-muted)] hover:text-white transition-colors">Contact</a></li>
+      </ul>
+    </div>
+  </div>
+
+  <div class="container-page mt-12 pt-6 border-t border-[var(--color-stroke)] flex flex-col sm:flex-row items-start sm:items-center justify-between gap-3 text-xs text-[var(--color-text-subtle)]">
+    <span>© 2026 Habiterr. All rights reserved.</span>
+    <span>Made for iPhone · Designed in dark mode.</span>
+  </div>
+</footer>
