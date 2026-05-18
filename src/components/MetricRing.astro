@@ -1,0 +1,43 @@
+---
+interface Props {
+  value: number;
+  label: string;
+  color?: string;
+  size?: number;
+  suffix?: string;
+}
+const { value, label, color = "#f97316", size = 96, suffix = "%" } = Astro.props;
+
+const r = 42;
+const c = 2 * Math.PI * r;
+const offset = c * (1 - Math.min(Math.max(value, 0), 100) / 100);
+---
+
+<div class="flex items-center gap-3">
+  <div class="relative shrink-0" style={`width:${size}px; height:${size}px;`}>
+    <svg viewBox="0 0 100 100" width={size} height={size} aria-hidden="true">
+      <circle cx="50" cy="50" r={r} fill="none" class="ring-track" stroke-width="8" />
+      <circle
+        cx="50"
+        cy="50"
+        r={r}
+        fill="none"
+        stroke={color}
+        stroke-width="8"
+        stroke-linecap="round"
+        class="ring-progress"
+        style={`--ring-circumference: ${c.toFixed(2)}; --ring-offset: ${offset.toFixed(2)};`}
+      />
+    </svg>
+    <div
+      class="absolute inset-0 flex items-center justify-center font-display font-bold text-lg"
+      style={`color:${color};`}
+    >
+      {value}{suffix}
+    </div>
+  </div>
+  <div>
+    <div class="text-xs uppercase tracking-wider text-[var(--color-text-muted)]">{label}</div>
+    <slot />
+  </div>
+</div>

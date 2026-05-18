@@ -1,0 +1,93 @@
+---
+import MetricCard from "./MetricCard.astro";
+---
+
+<section id="metrics" class="section-pad relative">
+  <div class="container-page">
+    <div class="reveal max-w-2xl mb-12">
+      <span class="eyebrow">The math, in plain English</span>
+      <h2 class="h-section mt-4">
+        How the numbers actually work.
+      </h2>
+      <p class="mt-4 text-[var(--color-text-muted)] leading-relaxed">
+        No black box. Here's exactly what every metric means, the formula
+        behind it, and how to read the score.
+      </p>
+    </div>
+
+    <div class="grid md:grid-cols-2 gap-5">
+      <MetricCard eyebrow="% Consistency" title="How often you actually show up." accent="#f97316">
+        <p class="font-mono text-xs bg-[#0f0f13] border border-[var(--color-stroke)] rounded-lg p-3">
+          consistency = completed_days / scheduled_days
+        </p>
+        <div class="grid gap-2 mt-1">
+          <div class="flex items-center justify-between">
+            <span><span class="text-white font-medium">80–100%</span> · excellent</span>
+            <span class="w-16 h-1.5 rounded-full bg-[#f97316]"></span>
+          </div>
+          <div class="flex items-center justify-between">
+            <span><span class="text-white font-medium">50–79%</span> · good</span>
+            <span class="w-12 h-1.5 rounded-full bg-[#f97316]/60"></span>
+          </div>
+          <div class="flex items-center justify-between">
+            <span><span class="text-white font-medium">&lt; 50%</span> · needs attention</span>
+            <span class="w-8 h-1.5 rounded-full bg-[#f97316]/30"></span>
+          </div>
+        </div>
+      </MetricCard>
+
+      <MetricCard eyebrow="Balance" title="How evenly your effort is spread." accent="#9b6dff">
+        <p>
+          We take the consistency of each habit, compute the standard deviation
+          across them, then invert it into a 0–100 score.
+        </p>
+        <p class="font-mono text-xs bg-[#0f0f13] border border-[var(--color-stroke)] rounded-lg p-3">
+          balance = 100 × (1 − σ / σ_max)
+        </p>
+        <p>
+          Low spread → high balance. Six habits at 70% each will score higher
+          than one at 100% and one at 0%.
+        </p>
+      </MetricCard>
+
+      <MetricCard eyebrow="Gentle Streaks" title="A streak that survives a bad week." accent="#4dd9c0">
+        <p>
+          Every active streak comes with a small tolerance budget — 10% of its
+          length, rounded down, minimum one. Spend a miss; keep going.
+        </p>
+        <p class="font-mono text-xs bg-[#0f0f13] border border-[var(--color-stroke)] rounded-lg p-3">
+          tolerance = max(1, floor(streak × 0.10))
+        </p>
+        <p>
+          <span class="text-white font-medium">Example:</span> a 47-day streak
+          allows up to 4 missed days total. You're rewarded for the long game.
+        </p>
+      </MetricCard>
+
+      <MetricCard eyebrow="Best Streak" title="Milestones that mean something." accent="#fbbf24">
+        <p>
+          Habiterr tracks your all-time best streak per habit and surfaces it
+          as a quiet trophy. Beat it — or rebuild without losing the memory.
+        </p>
+        <div class="grid grid-cols-3 gap-2 text-center">
+          {
+            [
+              { d: 7, name: "Week" },
+              { d: 30, name: "Month" },
+              { d: 100, name: "Century" },
+            ].map((m) => (
+              <div class="rounded-lg border border-[var(--color-stroke)] bg-[#0f0f13] p-3">
+                <div class="font-display font-bold text-xl" style="color:#fbbf24">
+                  {m.d}
+                </div>
+                <div class="text-[10px] uppercase tracking-widest text-[var(--color-text-muted)] mt-1">
+                  {m.name}
+                </div>
+              </div>
+            ))
+          }
+        </div>
+      </MetricCard>
+    </div>
+  </div>
+</section>

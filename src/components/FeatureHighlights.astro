@@ -1,0 +1,140 @@
+---
+import FeatureRow from "./FeatureRow.astro";
+import RadarChart from "./RadarChart.astro";
+
+const heatmap = Array.from({ length: 7 * 24 }, (_, i) => {
+  const r = (Math.sin(i * 0.7) + Math.cos(i * 0.21)) * 0.5 + 0.5;
+  const tier = r < 0.2 ? 0 : r < 0.45 ? 1 : r < 0.7 ? 2 : r < 0.88 ? 3 : 4;
+  return tier;
+});
+---
+
+<section id="features" class="section-pad">
+  <div class="container-page">
+    <div class="reveal max-w-2xl mb-16">
+      <span class="eyebrow">Features</span>
+      <h2 class="h-section mt-4">
+        Two innovations. One screen. No noise.
+      </h2>
+    </div>
+
+    <div class="flex flex-col gap-24 lg:gap-32">
+      <FeatureRow
+        eyebrow="01 — Radar Chart"
+        title="See all your habits at once."
+        body="Six axes, one shape. The further out, the better. The instant you open the app, you know exactly where you stand — and what's pulling the shape lopsided."
+      >
+        <div slot="visual" class="card p-6 md:p-8 relative">
+          <RadarChart size={460} />
+        </div>
+      </FeatureRow>
+
+      <FeatureRow
+        eyebrow="02 — Gentle Streaks"
+        title="Streaks that survive real life."
+        body="Real consistency isn't perfection. Habiterr lets you miss roughly 1 in 10 days without nuking your streak. You stay motivated, not punished."
+        reverse
+      >
+        <div slot="visual" class="card p-6 md:p-8">
+          <div class="text-xs uppercase tracking-widest text-[var(--color-text-subtle)] mb-3">
+            The 10% rule
+          </div>
+          <div class="space-y-3 font-mono text-[13px]">
+            <div class="flex items-center justify-between p-3 rounded-lg bg-[#0f0f13] border border-[var(--color-stroke)]">
+              <span class="text-[var(--color-text-muted)]">30-day streak</span>
+              <span class="text-white">3 misses allowed</span>
+            </div>
+            <div class="flex items-center justify-between p-3 rounded-lg bg-[#0f0f13] border border-[var(--color-stroke)]">
+              <span class="text-[var(--color-text-muted)]">60-day streak</span>
+              <span class="text-white">6 misses allowed</span>
+            </div>
+            <div class="flex items-center justify-between p-3 rounded-lg bg-[rgba(155,109,255,0.06)] border border-[rgba(155,109,255,0.3)]">
+              <span class="text-[var(--color-text-muted)]">100-day streak</span>
+              <span class="text-[#c4b0ff]">10 misses allowed</span>
+            </div>
+          </div>
+          <p class="mt-5 text-sm text-[var(--color-text-muted)] leading-relaxed">
+            <span class="text-white font-medium">Formula:</span> max(1,&nbsp;floor(streak × 0.10)).
+            One bad week won't undo months of effort.
+          </p>
+        </div>
+      </FeatureRow>
+
+      <FeatureRow
+        eyebrow="03 — Consistency + Balance"
+        title="Two numbers that tell the whole story."
+        body="Consistency tells you how often you show up. Balance tells you whether you're showing up across every habit, not just your favorite. Together, that's your week."
+      >
+        <div slot="visual" class="card p-6 md:p-8 grid grid-cols-2 gap-4">
+          <div
+            class="rounded-2xl p-5 flex flex-col gap-3"
+            style="background: linear-gradient(160deg, rgba(249,115,22,0.18), rgba(249,115,22,0.04)); border:1px solid rgba(249,115,22,0.25);"
+          >
+            <span class="text-xs uppercase tracking-widest text-[#f97316]">Consistency</span>
+            <span class="font-display text-5xl font-bold" style="color:#f97316;">78%</span>
+            <span class="text-xs text-[var(--color-text-muted)]">good range</span>
+            <div class="h-1.5 rounded-full bg-black/40 mt-auto">
+              <div class="h-full rounded-full" style="width:78%; background:#f97316;"></div>
+            </div>
+          </div>
+          <div
+            class="rounded-2xl p-5 flex flex-col gap-3"
+            style="background: linear-gradient(160deg, rgba(155,109,255,0.18), rgba(155,109,255,0.04)); border:1px solid rgba(155,109,255,0.25);"
+          >
+            <span class="text-xs uppercase tracking-widest text-[#9b6dff]">Balance</span>
+            <span class="font-display text-5xl font-bold" style="color:#9b6dff;">87%</span>
+            <span class="text-xs text-[var(--color-text-muted)]">excellent</span>
+            <div class="h-1.5 rounded-full bg-black/40 mt-auto">
+              <div class="h-full rounded-full" style="width:87%; background:#9b6dff;"></div>
+            </div>
+          </div>
+        </div>
+      </FeatureRow>
+
+      <FeatureRow
+        eyebrow="04 — Heatmap"
+        title="Months of progress, one screen."
+        body="A GitHub-style grid that turns six months of effort into a glance. Spot patterns — Mondays you crush, Sundays you drift — and adjust."
+        reverse
+      >
+        <div slot="visual" class="card p-6 md:p-8">
+          <div class="flex items-end justify-between mb-4">
+            <div>
+              <div class="text-xs uppercase tracking-widest text-[var(--color-text-subtle)]">
+                Last 24 weeks
+              </div>
+              <div class="text-sm text-[var(--color-text-muted)]">All habits combined</div>
+            </div>
+            <div class="flex items-center gap-1.5 text-[10px] text-[var(--color-text-subtle)]">
+              <span>Less</span>
+              <span class="w-2.5 h-2.5 rounded-sm heat-cell"></span>
+              <span class="w-2.5 h-2.5 rounded-sm heat-1"></span>
+              <span class="w-2.5 h-2.5 rounded-sm heat-2"></span>
+              <span class="w-2.5 h-2.5 rounded-sm heat-3"></span>
+              <span class="w-2.5 h-2.5 rounded-sm heat-4"></span>
+              <span>More</span>
+            </div>
+          </div>
+          <div
+            class="grid gap-1"
+            style="grid-template-columns: repeat(24, minmax(0,1fr));"
+          >
+            {
+              heatmap.map((tier) => (
+                <span class={`heat-cell ${tier ? `heat-${tier}` : ""}`} />
+              ))
+            }
+          </div>
+          <div class="mt-4 flex items-center justify-between text-xs text-[var(--color-text-muted)]">
+            <span>Nov</span>
+            <span>Dec</span>
+            <span>Jan</span>
+            <span>Feb</span>
+            <span>Mar</span>
+            <span>Apr</span>
+          </div>
+        </div>
+      </FeatureRow>
+    </div>
+  </div>
+</section>

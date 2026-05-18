@@ -1,0 +1,30 @@
+---
+import Logo from "./Logo.astro";
+---
+
+<nav
+  data-nav
+  data-scrolled="false"
+  class="fixed top-0 left-0 right-0 z-40 nav-blur transition-shadow data-[scrolled=true]:shadow-[0_8px_30px_-12px_rgba(0,0,0,0.6)]"
+>
+  <div class="container-page flex items-center justify-between h-16">
+    <Logo size={26} />
+
+    <div class="hidden md:flex items-center gap-7 text-sm text-[var(--color-text-muted)]">
+      <a href="#features" class="hover:text-white transition-colors">Features</a>
+      <a href="#metrics" class="hover:text-white transition-colors">Metrics</a>
+      <a href="#pricing" class="hover:text-white transition-colors">Pricing</a>
+      <a href="#compare" class="hover:text-white transition-colors">Compare</a>
+    </div>
+
+    <a
+      href="https://apps.apple.com/app/habiterr"
+      class="btn btn-primary text-sm py-2.5 px-4"
+    >
+      <svg width="14" height="16" viewBox="0 0 384 512" fill="currentColor" aria-hidden="true">
+        <path d="M318 272c-1-79 64-117 67-119-36-53-93-60-113-61-48-5-94 28-118 28-25 0-62-27-103-26-53 1-101 31-128 78-55 95-14 235 39 312 26 38 57 80 97 79 39-2 53-25 100-25s60 25 101 24c42-1 68-38 93-76 30-44 42-86 43-89-1 0-82-31-83-125zM244 84c21-26 36-62 32-98-31 1-69 21-92 47-20 23-37 60-32 95 35 3 70-18 92-44z" />
+      </svg>
+      Download
+    </a>
+  </div>
+</nav>

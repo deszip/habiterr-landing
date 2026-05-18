@@ -1,0 +1,82 @@
+---
+import PricingCard from "./PricingCard.astro";
+import AppStoreBadge from "./AppStoreBadge.astro";
+---
+
+<section id="pricing" class="section-pad relative">
+  <div class="container-page">
+    <div class="reveal max-w-2xl mb-14">
+      <span class="eyebrow">Pricing</span>
+      <h2 class="h-section mt-4">Simple plans. Pay what feels right.</h2>
+      <p class="mt-4 text-[var(--color-text-muted)] leading-relaxed">
+        Every paid plan unlocks the same full app. No tiers, no upsells,
+        no feature gates hiding behind another paywall.
+      </p>
+    </div>
+
+    <div class="grid sm:grid-cols-2 lg:grid-cols-4 gap-5 lg:gap-4 mt-4">
+      <div class="reveal">
+        <PricingCard
+          name="Weekly"
+          price="$0.99"
+          period="/wk"
+          blurb="Try it out for a week. Cancel anytime from the App Store."
+        >
+          <li>· Full radar chart</li>
+          <li>· Gentle streaks</li>
+          <li>· iCloud sync</li>
+        </PricingCard>
+      </div>
+
+      <div class="reveal">
+        <PricingCard
+          name="Monthly"
+          price="$1.99"
+          period="/mo"
+          blurb="Month-to-month, no commitment."
+        >
+          <li>· Everything in Weekly</li>
+          <li>· Widgets &amp; Lock Screen</li>
+          <li>· Shortcuts &amp; Siri</li>
+        </PricingCard>
+      </div>
+
+      <div class="reveal" style="transition-delay: 60ms;">
+        <PricingCard
+          name="Annual"
+          price="$14.99"
+          period="/yr"
+          badge="71% OFF"
+          featured
+          blurb="Cheapest per-month. The plan most users pick."
+        >
+          <li>· Everything in Monthly</li>
+          <li>· Unlimited habits</li>
+          <li>· Priority email support</li>
+        </PricingCard>
+      </div>
+
+      <div class="reveal" style="transition-delay: 120ms;">
+        <PricingCard
+          name="Lifetime"
+          price="$14.99"
+          period="once"
+          badge="Best Value"
+          bestValue
+          blurb="One payment. All future updates. No subscription."
+        >
+          <li>· Pay once, use forever</li>
+          <li>· All future features</li>
+          <li>· Family Sharing</li>
+        </PricingCard>
+      </div>
+    </div>
+
+    <div class="reveal mt-14 flex flex-col sm:flex-row items-center justify-center gap-5 text-center">
+      <p class="text-[var(--color-text-muted)]">
+        <span class="text-white font-medium">Start free.</span> Upgrade anytime.
+      </p>
+      <AppStoreBadge />
+    </div>
+  </div>
+</section>

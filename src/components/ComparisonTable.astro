@@ -1,0 +1,91 @@
+---
+const rows = [
+  { label: "Gentle streaks (forgive missed days)", ours: true, others: false },
+  { label: "Radar chart balance view", ours: true, others: false },
+  { label: "Consistency + Balance metrics", ours: true, others: false },
+  { label: "Lifetime access under $15", ours: true, others: "rare" },
+  { label: "No ads, no social feed", ours: true, others: false },
+];
+---
+
+<section id="compare" class="section-pad relative">
+  <div class="container-page">
+    <div class="reveal max-w-2xl mb-12">
+      <span class="eyebrow">Compare</span>
+      <h2 class="h-section mt-4">Habiterr vs. the rest.</h2>
+    </div>
+
+    <div class="reveal card overflow-hidden">
+      <div class="grid grid-cols-[1.4fr_1fr_1fr] text-sm">
+        <div class="px-6 py-5 text-[var(--color-text-subtle)] uppercase tracking-widest text-xs">
+          Feature
+        </div>
+        <div
+          class="px-6 py-5 text-center font-semibold text-white border-l border-[var(--color-stroke)]"
+          style="background: linear-gradient(180deg, rgba(155,109,255,0.12), transparent);"
+        >
+          Habiterr
+        </div>
+        <div class="px-6 py-5 text-center font-medium text-[var(--color-text-muted)] border-l border-[var(--color-stroke)]">
+          Other apps
+        </div>
+
+        {
+          rows.map((r, i) => (
+            <>
+              <div class={`px-6 py-5 border-t border-[var(--color-stroke)] ${i === rows.length - 1 ? "" : ""}`}>
+                {r.label}
+              </div>
+              <div
+                class="px-6 py-5 text-center border-t border-l border-[var(--color-stroke)]"
+                style="background: linear-gradient(180deg, rgba(155,109,255,0.06), transparent);"
+              >
+                {r.ours ? (
+                  <span
+                    class="inline-flex items-center justify-center w-7 h-7 rounded-full"
+                    style="background: rgba(77,217,192,0.18); color:#4dd9c0;"
+                    aria-label="Yes"
+                  >
+                    <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="3" stroke-linecap="round" stroke-linejoin="round">
+                      <polyline points="20 6 9 17 4 12" />
+                    </svg>
+                  </span>
+                ) : (
+                  <span class="text-[var(--color-text-subtle)]">—</span>
+                )}
+              </div>
+              <div class="px-6 py-5 text-center border-t border-l border-[var(--color-stroke)]">
+                {r.others === true ? (
+                  <span
+                    class="inline-flex items-center justify-center w-7 h-7 rounded-full"
+                    style="background: rgba(77,217,192,0.18); color:#4dd9c0;"
+                    aria-label="Yes"
+                  >
+                    <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="3" stroke-linecap="round" stroke-linejoin="round">
+                      <polyline points="20 6 9 17 4 12" />
+                    </svg>
+                  </span>
+                ) : r.others === false ? (
+                  <span
+                    class="inline-flex items-center justify-center w-7 h-7 rounded-full"
+                    style="background: rgba(239,68,68,0.12); color:#ef4444;"
+                    aria-label="No"
+                  >
+                    <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="3" stroke-linecap="round" stroke-linejoin="round">
+                      <line x1="18" y1="6" x2="6" y2="18" />
+                      <line x1="6" y1="6" x2="18" y2="18" />
+                    </svg>
+                  </span>
+                ) : (
+                  <span class="text-xs uppercase tracking-widest text-[var(--color-text-muted)]">
+                    Rare
+                  </span>
+                )}
+              </div>
+            </>
+          ))
+        }
+      </div>
+    </div>
+  </div>
+</section>
