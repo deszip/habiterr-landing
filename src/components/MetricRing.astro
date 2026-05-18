@@ -13,7 +13,7 @@ const c = 2 * Math.PI * r;
 const offset = c * (1 - Math.min(Math.max(value, 0), 100) / 100);
 ---
 
-<div class="flex items-center gap-3">
+<div class="flex items-center gap-3 min-w-0">
   <div class="relative shrink-0" style={`width:${size}px; height:${size}px;`}>
     <svg viewBox="0 0 100 100" width={size} height={size} aria-hidden="true">
       <circle cx="50" cy="50" r={r} fill="none" class="ring-track" stroke-width="8" />
@@ -36,8 +36,8 @@ const offset = c * (1 - Math.min(Math.max(value, 0), 100) / 100);
       {value}{suffix}
     </div>
   </div>
-  <div>
-    <div class="text-xs uppercase tracking-wider text-[var(--color-text-muted)]">{label}</div>
+  <div class="min-w-0 pr-1">
+    <div class="text-xs uppercase tracking-wide leading-tight text-[var(--color-text-muted)] break-words">{label}</div>
     <slot />
   </div>
 </div>

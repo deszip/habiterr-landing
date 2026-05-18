@@ -1,6 +1,7 @@
 ---
 import RadarChart from "./RadarChart.astro";
 import MetricRing from "./MetricRing.astro";
+import AppStoreBadge from "./AppStoreBadge.astro";
 ---
 
 <section id="top" class="relative pt-32 pb-16 md:pt-40 md:pb-24 overflow-hidden">
@@ -12,13 +13,12 @@ import MetricRing from "./MetricRing.astro";
       </h1>
       <p class="mt-6 text-lg text-[var(--color-text-muted)] leading-relaxed max-w-lg">
         Most apps punish you for missing a day. Habiterr uses gentle streaks
-        that forgive occasional slips — so you keep going.
+        that forgive occasional slips, plus a balance radial chart that helps
+        you stay consistent across your whole life.
       </p>
 
       <div class="mt-9 flex flex-wrap items-center gap-3">
-        <a href="https://apps.apple.com/app/habiterr" class="btn btn-primary">
-          Download Free
-        </a>
+        <AppStoreBadge height={48} />
         <a href="#features" class="btn btn-ghost">See how it works</a>
       </div>
 
@@ -53,7 +53,7 @@ import MetricRing from "./MetricRing.astro";
 
         <RadarChart size={420} />
 
-        <div class="mt-4 grid grid-cols-2 gap-3">
+        <div class="mt-4 grid sm:grid-cols-2 gap-3">
           <div
             class="card-inner p-4"
             style="border-color: rgba(249,115,22,0.25); background: linear-gradient(180deg, rgba(249,115,22,0.07), rgba(249,115,22,0.02));"

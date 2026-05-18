@@ -1,12 +1,6 @@
 ---
 import FeatureRow from "./FeatureRow.astro";
 import RadarChart from "./RadarChart.astro";
-
-const heatmap = Array.from({ length: 7 * 24 }, (_, i) => {
-  const r = (Math.sin(i * 0.7) + Math.cos(i * 0.21)) * 0.5 + 0.5;
-  const tier = r < 0.2 ? 0 : r < 0.45 ? 1 : r < 0.7 ? 2 : r < 0.88 ? 3 : 4;
-  return tier;
-});
 ---
 
 <section id="features" class="section-pad">
@@ -16,6 +10,10 @@ const heatmap = Array.from({ length: 7 * 24 }, (_, i) => {
       <h2 class="h-section mt-4">
         Two innovations. One screen. No noise.
       </h2>
+      <p class="mt-5 text-lg text-[var(--color-text-muted)] leading-relaxed">
+        Flexible tracking, fresh habit metrics, and an interface built to make
+        daily use feel effortless.
+      </p>
     </div>
 
     <div class="flex flex-col gap-24 lg:gap-32">
@@ -92,46 +90,36 @@ const heatmap = Array.from({ length: 7 * 24 }, (_, i) => {
       </FeatureRow>
 
       <FeatureRow
-        eyebrow="04 — Heatmap"
-        title="Months of progress, one screen."
-        body="A GitHub-style grid that turns six months of effort into a glance. Spot patterns — Mondays you crush, Sundays you drift — and adjust."
+        eyebrow="04 — Tracking Types"
+        title="Three ways to log real life."
+        body="Use check-ins for yes-or-no habits, counters for repeated actions, and timers for focused sessions. Habiterr adapts to the habit instead of forcing everything into one checkbox."
         reverse
       >
-        <div slot="visual" class="card p-6 md:p-8">
-          <div class="flex items-end justify-between mb-4">
+        <div slot="visual" class="card p-6 md:p-8 grid gap-4">
+          <div class="rounded-2xl border border-[rgba(77,217,192,0.25)] bg-[rgba(77,217,192,0.07)] p-5 flex items-center justify-between gap-4">
             <div>
-              <div class="text-xs uppercase tracking-widest text-[var(--color-text-subtle)]">
-                Last 24 weeks
-              </div>
-              <div class="text-sm text-[var(--color-text-muted)]">All habits combined</div>
+              <div class="text-xs uppercase tracking-widest text-[#4dd9c0]">Check in</div>
+              <div class="mt-1 text-sm text-[var(--color-text-muted)]">Meditate today</div>
             </div>
-            <div class="flex items-center gap-1.5 text-[10px] text-[var(--color-text-subtle)]">
-              <span>Less</span>
-              <span class="w-2.5 h-2.5 rounded-sm heat-cell"></span>
-              <span class="w-2.5 h-2.5 rounded-sm heat-1"></span>
-              <span class="w-2.5 h-2.5 rounded-sm heat-2"></span>
-              <span class="w-2.5 h-2.5 rounded-sm heat-3"></span>
-              <span class="w-2.5 h-2.5 rounded-sm heat-4"></span>
-              <span>More</span>
+            <div class="w-11 h-11 rounded-full border border-[#4dd9c0] bg-[rgba(77,217,192,0.12)] flex items-center justify-center">
+              <svg viewBox="0 0 32 32" width="24" height="24" aria-hidden="true">
+                <path d="M9 16.5 l4.5 4.5 L23 10.5" stroke="#4dd9c0" stroke-width="2.5" fill="none" stroke-linecap="round" stroke-linejoin="round" />
+              </svg>
             </div>
           </div>
-          <div
-            class="grid gap-1"
-            style="grid-template-columns: repeat(24, minmax(0,1fr));"
-          >
-            {
-              heatmap.map((tier) => (
-                <span class={`heat-cell ${tier ? `heat-${tier}` : ""}`} />
-              ))
-            }
+          <div class="rounded-2xl border border-[rgba(155,109,255,0.25)] bg-[rgba(155,109,255,0.07)] p-5 flex items-center justify-between gap-4">
+            <div>
+              <div class="text-xs uppercase tracking-widest text-[#9b6dff]">Counter</div>
+              <div class="mt-1 text-sm text-[var(--color-text-muted)]">Water glasses</div>
+            </div>
+            <div class="font-display text-3xl font-bold text-[#c4b0ff]">6</div>
           </div>
-          <div class="mt-4 flex items-center justify-between text-xs text-[var(--color-text-muted)]">
-            <span>Nov</span>
-            <span>Dec</span>
-            <span>Jan</span>
-            <span>Feb</span>
-            <span>Mar</span>
-            <span>Apr</span>
+          <div class="rounded-2xl border border-[rgba(249,115,22,0.25)] bg-[rgba(249,115,22,0.07)] p-5 flex items-center justify-between gap-4">
+            <div>
+              <div class="text-xs uppercase tracking-widest text-[#f97316]">Timer</div>
+              <div class="mt-1 text-sm text-[var(--color-text-muted)]">Deep work</div>
+            </div>
+            <div class="font-mono text-xl font-semibold text-[#ffb17a]">25:00</div>
           </div>
         </div>
       </FeatureRow>

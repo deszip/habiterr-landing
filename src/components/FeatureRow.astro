@@ -4,7 +4,7 @@ interface Props {
   title: string;
   body: string;
   reverse?: boolean;
-  visualKey?: "radar" | "streaks" | "metrics" | "heatmap";
+  visualKey?: "radar" | "streaks" | "metrics";
   screenshot?: string;
 }
 const { eyebrow, title, body, reverse = false, visualKey, screenshot } = Astro.props;
