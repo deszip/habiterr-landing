@@ -1,0 +1,97 @@
+---
+import Layout from "../layouts/Layout.astro";
+import Nav from "../components/Nav.astro";
+import Footer from "../components/Footer.astro";
+---
+
+<Layout
+  title="Privacy Policy — Habiterr"
+  description="How Habiterr handles personal data and protects your privacy."
+>
+  <Nav />
+  <main id="main" class="pt-28 pb-16">
+    <article class="container-page max-w-3xl">
+      <header class="mb-10">
+        <h1 class="text-4xl md:text-5xl font-bold tracking-tight">Privacy Policy</h1>
+        <p class="mt-3 text-sm text-[var(--color-text-subtle)]">Effective Date: 25 January 2026</p>
+      </header>
+
+      <div class="legal-prose">
+        <p>
+          Habiterr prioritizes user privacy. We request personal information only when genuinely
+          necessary to deliver services through the Habiterr app.
+        </p>
+
+        <p>
+          Data collection follows fair and lawful practices with user awareness and consent. Users
+          are informed about what information is gathered and its intended use.
+        </p>
+
+        <p>
+          Information retention is limited to the duration required for service delivery. Stored
+          data receives protection through commercially acceptable means to prevent loss and theft,
+          as well as unauthorised access, disclosure, copying, use or modification. We do not
+          publicly share or distribute personally identifying information to third parties unless
+          legally required.
+        </p>
+
+        <p>
+          External website links may appear in the app, but we disclaim responsibility for the
+          content and privacy practices of those sites.
+        </p>
+
+        <p>
+          Users may decline to provide personal information, though this may limit access to
+          certain services.
+        </p>
+
+        <p>
+          Continued app usage indicates acceptance of our privacy practices. Questions about data
+          handling may be directed to
+          <a href="mailto:raf.rafiki@gmail.com">raf.rafiki@gmail.com</a>.
+        </p>
+      </div>
+
+      <div class="mt-12 pt-6 border-t border-[var(--color-stroke)] text-sm">
+        <a href="/" class="text-[var(--color-text-muted)] hover:text-white transition-colors">
+          ← Back to home
+        </a>
+      </div>
+    </article>
+  </main>
+  <Footer />
+</Layout>
+
+<style>
+  .legal-prose {
+    color: var(--color-text-muted);
+    font-size: 1rem;
+    line-height: 1.75;
+  }
+  .legal-prose p {
+    margin-bottom: 1.25rem;
+  }
+  .legal-prose h2 {
+    color: var(--color-text-primary);
+    font-size: 1.5rem;
+    font-weight: 600;
+    margin-top: 2rem;
+    margin-bottom: 0.75rem;
+  }
+  .legal-prose ul {
+    list-style: disc;
+    padding-left: 1.5rem;
+    margin-bottom: 1.25rem;
+  }
+  .legal-prose li {
+    margin-bottom: 0.5rem;
+  }
+  .legal-prose a {
+    color: var(--color-accent-teal);
+    text-decoration: underline;
+    text-underline-offset: 3px;
+  }
+  .legal-prose a:hover {
+    color: #fff;
+  }
+</style>

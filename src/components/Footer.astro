@@ -4,7 +4,7 @@ import AppStoreBadge from "./AppStoreBadge.astro";
 ---
 
 <footer class="border-t border-[var(--color-stroke)] mt-20 pb-12 pt-16">
-  <div class="container-page grid md:grid-cols-[1.2fr_1fr_1fr] gap-10">
+  <div class="container-page grid md:grid-cols-[1.2fr_1fr_1fr_1fr] gap-10">
     <div class="max-w-sm">
       <Logo size={28} />
       <p class="mt-4 text-[var(--color-text-muted)] text-sm leading-relaxed">
@@ -20,8 +20,8 @@ import AppStoreBadge from "./AppStoreBadge.astro";
         Product
       </div>
       <ul class="space-y-3 text-sm">
-        <li><a href="#features" class="text-[var(--color-text-muted)] hover:text-white transition-colors">Features</a></li>
-        <li><a href="#metrics" class="text-[var(--color-text-muted)] hover:text-white transition-colors">Metrics</a></li>
+        <li><a href="/#features" class="text-[var(--color-text-muted)] hover:text-white transition-colors">Features</a></li>
+        <li><a href="/#metrics" class="text-[var(--color-text-muted)] hover:text-white transition-colors">Metrics</a></li>
       </ul>
     </div>
 
@@ -31,14 +31,48 @@ import AppStoreBadge from "./AppStoreBadge.astro";
       </div>
       <ul class="space-y-3 text-sm">
         <li><a href="/privacy" class="text-[var(--color-text-muted)] hover:text-white transition-colors">Privacy</a></li>
-        <li><a href="/eula" class="text-[var(--color-text-muted)] hover:text-white transition-colors">EULA</a></li>
-        <li><a href="mailto:hello@habiterr.app" class="text-[var(--color-text-muted)] hover:text-white transition-colors">Contact</a></li>
+        <li><a href="/eula" class="text-[var(--color-text-muted)] hover:text-white transition-colors">Terms of Use</a></li>
+        <li><a href="mailto:raf.rafiki@gmail.com" class="text-[var(--color-text-muted)] hover:text-white transition-colors">Contact</a></li>
+      </ul>
+    </div>
+
+    <div>
+      <div class="text-xs uppercase tracking-widest text-[var(--color-text-subtle)] mb-4">
+        Follow
+      </div>
+      <ul class="space-y-3 text-sm">
+        <li>
+          <a
+            href="https://twitter.com/deszip"
+            target="_blank"
+            rel="noopener noreferrer"
+            class="text-[var(--color-text-muted)] hover:text-white transition-colors inline-flex items-center gap-2"
+          >
+            <svg width="14" height="14" viewBox="0 0 24 24" fill="currentColor" aria-hidden="true">
+              <path d="M18.244 2.25h3.308l-7.227 8.26 8.502 11.24H16.17l-5.214-6.817L4.99 21.75H1.68l7.73-8.835L1.254 2.25H8.08l4.713 6.231 5.45-6.231Zm-1.161 17.52h1.833L7.084 4.126H5.117l11.966 15.644Z" />
+            </svg>
+            Twitter / X
+          </a>
+        </li>
+        <li>
+          <a
+            href="https://www.threads.com/@themissingbits?igshid=NTc4MTIwNjQ2YQ=="
+            target="_blank"
+            rel="noopener noreferrer"
+            class="text-[var(--color-text-muted)] hover:text-white transition-colors inline-flex items-center gap-2"
+          >
+            <svg width="14" height="14" viewBox="0 0 24 24" fill="currentColor" aria-hidden="true">
+              <path d="M12.186 24h-.007c-3.581-.024-6.334-1.205-8.184-3.509C2.35 18.44 1.5 15.586 1.472 12.01v-.02c.03-3.577.879-6.43 2.525-8.482C5.845 1.205 8.6.024 12.18 0h.014c2.746.02 5.043.725 6.826 2.098 1.677 1.29 2.858 3.13 3.509 5.467l-2.04.569c-1.104-3.96-3.898-5.984-8.31-6.015-2.91.022-5.11.936-6.54 2.717C4.307 6.504 3.616 8.914 3.589 12c.027 3.086.718 5.496 2.057 7.164 1.43 1.781 3.631 2.695 6.54 2.717 2.623-.02 4.358-.631 5.8-2.045 1.647-1.613 1.618-3.593 1.09-4.798-.31-.71-.873-1.3-1.634-1.75-.192 1.352-.622 2.446-1.284 3.272-.886 1.102-2.14 1.704-3.73 1.79-1.202.065-2.361-.218-3.259-.801-1.063-.689-1.685-1.74-1.752-2.964-.065-1.19.408-2.285 1.33-3.082.88-.76 2.119-1.207 3.583-1.291a13.853 13.853 0 0 1 3.02.143c-.135-.823-.41-1.477-.825-1.948-.566-.642-1.443-.968-2.61-.978-.025 0-.05 0-.075 0-.937 0-2.207.262-3.01 1.435L9.165 7.857c1.076-1.564 2.823-2.426 4.917-2.426h.078c3.494.023 5.576 2.18 5.783 5.943.117.05.232.097.346.156 1.503.715 2.602 1.794 3.176 3.12 1.025 2.379.34 5.991-3.063 8.355C18.685 23.348 16.59 23.978 12.186 24Zm1.795-11.668c-.51-.029-1.029-.039-1.529-.011-1.844.107-2.961.93-2.91 1.85.054.985 1.13 1.45 2.171 1.392.962-.052 2.236-.426 2.451-2.846-.054-.123-.114-.247-.183-.385Z" />
+            </svg>
+            Threads
+          </a>
+        </li>
       </ul>
     </div>
   </div>
 
   <div class="container-page mt-12 pt-6 border-t border-[var(--color-stroke)] flex flex-col sm:flex-row items-start sm:items-center justify-between gap-3 text-xs text-[var(--color-text-subtle)]">
-    <span>© 2026 Habiterr. All rights reserved.</span>
+    <span>© 2026 The Missing Bits. All rights reserved.</span>
     <span>Made for iPhone.</span>
   </div>
 </footer>
