@@ -24,6 +24,74 @@ import RadarChart from "./RadarChart.astro";
       >
         <div slot="visual" class="card p-6 md:p-8 relative">
           <RadarChart size={460} />
+
+          <div class="mt-6 pt-6 border-t border-[var(--color-stroke)] grid grid-cols-2 gap-4">
+            {
+              [
+                {
+                  label: "Consistency",
+                  value: 78,
+                  color: "#f97316",
+                  glow: "rgba(249,115,22,0.25)",
+                  bgFrom: "rgba(249,115,22,0.18)",
+                  bgTo: "rgba(249,115,22,0.04)",
+                  border: "rgba(249,115,22,0.25)",
+                },
+                {
+                  label: "Balance",
+                  value: 87,
+                  color: "#9b6dff",
+                  glow: "rgba(155,109,255,0.25)",
+                  bgFrom: "rgba(155,109,255,0.18)",
+                  bgTo: "rgba(155,109,255,0.04)",
+                  border: "rgba(155,109,255,0.25)",
+                },
+              ].map((g) => {
+                const r = 75;
+                const arc = Math.PI * r;
+                const offset = arc * (1 - g.value / 100);
+                return (
+                  <div
+                    class="rounded-2xl p-4 flex flex-col items-center"
+                    style={`background: linear-gradient(160deg, ${g.bgFrom}, ${g.bgTo}); border:1px solid ${g.border};`}
+                  >
+                    <div class="relative w-full" style="max-width:180px;">
+                      <svg viewBox="0 0 180 110" width="100%" aria-hidden="true">
+                        <path
+                          d="M 15 100 A 75 75 0 0 1 165 100"
+                          fill="none"
+                          stroke="rgba(255,255,255,0.08)"
+                          stroke-width="12"
+                          stroke-linecap="round"
+                        />
+                        <path
+                          d="M 15 100 A 75 75 0 0 1 165 100"
+                          fill="none"
+                          stroke={g.color}
+                          stroke-width="12"
+                          stroke-linecap="round"
+                          class="gauge-arc ring-progress"
+                          style={`--ring-circumference: ${arc.toFixed(2)}; --ring-offset: ${offset.toFixed(2)}; filter: drop-shadow(0 0 12px ${g.glow});`}
+                        />
+                      </svg>
+                      <div
+                        class="absolute inset-x-0 bottom-1 text-center font-display font-bold text-3xl md:text-4xl"
+                        style={`color:${g.color};`}
+                      >
+                        {g.value}%
+                      </div>
+                    </div>
+                    <div
+                      class="mt-2 text-xs uppercase tracking-widest"
+                      style={`color:${g.color};`}
+                    >
+                      {g.label}
+                    </div>
+                  </div>
+                );
+              })
+            }
+          </div>
         </div>
       </FeatureRow>
 
