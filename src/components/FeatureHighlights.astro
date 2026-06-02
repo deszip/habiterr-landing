@@ -25,12 +25,15 @@ import RadarChart from "./RadarChart.astro";
         <div slot="visual" class="card p-6 md:p-8 relative">
           <RadarChart size={460} />
 
-          <div class="mt-6 pt-6 border-t border-[var(--color-stroke)] grid grid-cols-2 gap-4">
+          <div
+            data-gauges
+            class="mt-6 pt-6 border-t border-[var(--color-stroke)] grid grid-cols-2 gap-4"
+          >
             {
               [
                 {
                   label: "Consistency",
-                  value: 78,
+                  value: 33,
                   color: "#f97316",
                   glow: "rgba(249,115,22,0.25)",
                   bgFrom: "rgba(249,115,22,0.18)",
@@ -70,8 +73,8 @@ import RadarChart from "./RadarChart.astro";
                           stroke={g.color}
                           stroke-width="12"
                           stroke-linecap="round"
-                          class="gauge-arc ring-progress"
-                          style={`--ring-circumference: ${arc.toFixed(2)}; --ring-offset: ${offset.toFixed(2)}; filter: drop-shadow(0 0 12px ${g.glow});`}
+                          class="gauge-arc"
+                          style={`--gauge-circumference: ${arc.toFixed(2)}; --gauge-offset: ${offset.toFixed(2)}; filter: drop-shadow(0 0 12px ${g.glow});`}
                         />
                       </svg>
                       <div
@@ -194,3 +197,23 @@ import RadarChart from "./RadarChart.astro";
     </div>
   </div>
 </section>
+
+<script>
+  const gaugeGroups = document.querySelectorAll<HTMLElement>("[data-gauges]");
+  if (gaugeGroups.length > 0) {
+    const observer = new IntersectionObserver(
+      (entries) => {
+        for (const entry of entries) {
+          const arcs = entry.target.querySelectorAll<SVGElement>(".gauge-arc");
+          if (entry.isIntersecting) {
+            arcs.forEach((arc) => arc.classList.add("is-filled"));
+          } else {
+            arcs.forEach((arc) => arc.classList.remove("is-filled"));
+          }
+        }
+      },
+      { rootMargin: "0px 0px -10% 0px", threshold: 0.25 },
+    );
+    gaugeGroups.forEach((el) => observer.observe(el));
+  }
+</script>

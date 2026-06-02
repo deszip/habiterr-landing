@@ -330,9 +330,15 @@
   stroke-dashoffset: var(--ring-offset, 0);
 }
 
-/* semi-circular gauge arc — overrides the full-circle rotation above */
+/* semi-circular gauge arc — empties when offscreen, fills on each re-entry */
 .gauge-arc {
-  transform: none;
+  stroke-dasharray: var(--gauge-circumference, 236);
+  stroke-dashoffset: var(--gauge-circumference, 236);
+  transition: stroke-dashoffset 1.6s cubic-bezier(0.22, 1, 0.36, 1);
+}
+
+.gauge-arc.is-filled {
+  stroke-dashoffset: var(--gauge-offset, 0);
 }
 
 /* pricing card hover ------------------------------------------------------ */
