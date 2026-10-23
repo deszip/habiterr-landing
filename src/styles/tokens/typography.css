@@ -1,0 +1,40 @@
+/* Habiterr — Typography tokens
+ * The app uses Apple's SF Pro system font exclusively (SwiftUI .system).
+ * SF Pro cannot be shipped as a webfont (Apple license), so we use the native
+ * system-ui stack — this renders REAL SF Pro on Apple devices and a close
+ * grotesque fallback elsewhere. See readme.md → VISUAL FOUNDATIONS.
+ *
+ * Font sizes mirror DesignSystem.Typography.Size (in pt → px). */
+
+:root {
+  /* SF Pro is a system font (not an embeddable webfont). The system-ui stack
+     renders REAL SF Pro on Apple devices; a close grotesque falls back elsewhere. */
+  --font-display: -apple-system, BlinkMacSystemFont, system-ui, "Segoe UI", Roboto, sans-serif;
+  --font-text:    -apple-system, BlinkMacSystemFont, system-ui, "Segoe UI", Roboto, sans-serif;
+  --font-mono:    ui-monospace, SFMono-Regular, Menlo, monospace;
+
+  /* Type scale (SwiftUI point sizes) */
+  --text-caption2:   11px;
+  --text-caption:    12px;
+  --text-subheadline:14px;
+  --text-body:       17px;   /* default body */
+  --text-title3:     20px;
+  --text-title2:     22px;
+  --text-title:      28px;   /* page title */
+  --text-large:      34px;   /* largeTitle */
+  --text-hero:       56px;   /* onboarding display */
+  --text-hero-xl:    96px;   /* "Day zero." empty-state display */
+
+  /* Weights */
+  --weight-regular:  400;
+  --weight-medium:   500;
+  --weight-semibold: 600;
+  --weight-bold:     700;
+
+  /* Tracking for ALL-CAPS eyebrow labels ("WELCOME TO HABITERR") */
+  --tracking-eyebrow: 2px;
+
+  --line-tight:  1.05;  /* @kind other */
+  --line-body:   1.35;  /* @kind other */
+  --line-relaxed:1.5;   /* @kind other */
+}

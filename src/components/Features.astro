@@ -1,0 +1,233 @@
+---
+import Feature from "./Feature.astro";
+---
+
+<section id="features">
+  <div class="wrap">
+    <div class="sec-head" data-reveal>
+      <span class="eyebrow">Features</span>
+      <h2>Built for the long game.</h2>
+      <p>Four ideas that make showing up feel lighter, and make the progress easier to see.</p>
+    </div>
+
+    <Feature
+      icon="local_fire_department"
+      label="01 — Gentle streaks"
+      title="Miss a day. Keep&nbsp;the&nbsp;streak."
+      body="Habits form through repetition, not perfection. Research on habit formation shows a single missed day barely dents long-term progress. What actually breaks a habit is the all-or-nothing feeling after a slip. Gentle streaks absorb roughly one miss in ten, so a bad Tuesday stays a bad Tuesday."
+      why={[
+        "Motivation survives the slip that would reset other apps",
+        "The longer you go, the more room you earn",
+      ]}
+    >
+      <div class="stage" id="streakViz" data-reveal aria-hidden="true">
+        <div class="card streak-card">
+          <div class="streak-top">
+            <span class="icon-chip" style="--c:var(--habit-sage)"><span class="ms">sports_gymnastics</span></span>
+            <div>
+              <div class="hname">Stretch</div>
+              <small class="muted" style="font-size:13px">Every day</small>
+            </div>
+            <div class="count">
+              <b><span class="ms">local_fire_department</span><span data-streak>0</span></b>
+              <small>day streak</small>
+            </div>
+          </div>
+          <div class="days"></div>
+          <div class="tolerance">
+            <span>Misses allowed</span>
+            <span style="display:flex;align-items:center;gap:10px">
+              <span class="dots"></span>
+              <span class="muted" data-allow>0 of 1 used</span>
+            </span>
+          </div>
+        </div>
+        <div class="toast"><i class="led"></i>1 light off · streak holds</div>
+      </div>
+    </Feature>
+
+    <Feature
+      icon="hub"
+      label="02 — Radar chart"
+      title="Your whole life, in&nbsp;one&nbsp;shape."
+      body="Habits don’t live alone. Sleep fuels the run, the run steadies your mood, and your mood decides whether the book gets opened. The radar plots every habit’s consistency around a circle. When one side caves in you see it straight away, and can rebalance before it drags the rest down."
+      why={[
+        "Neglected habits show up at a glance",
+        "Balance turns “am I doing okay?” into one honest number",
+      ]}
+      flip
+    >
+      <div
+        class="stage"
+        id="radarViz"
+        data-reveal
+        aria-hidden="true"
+        style="display:flex;flex-direction:column;align-items:center"
+      >
+        <div class="radar-wrap"><svg viewBox="0 0 400 400"></svg></div>
+        <div class="radar-metrics">
+          <div class="mpanel">
+            <div>
+              <small><span class="ms">percent</span>Consistency</small>
+              <b data-cons>0%</b>
+            </div>
+            <svg class="ring" viewBox="0 0 44 44">
+              <circle class="bg" cx="22" cy="22" r="18"></circle>
+              <circle class="fg" cx="22" cy="22" r="18" stroke-dasharray="113" stroke-dashoffset="113"></circle>
+            </svg>
+          </div>
+          <div class="mpanel">
+            <div>
+              <small><span class="ms">hub</span>Balance</small>
+              <b data-bal>0%</b>
+            </div>
+            <svg class="ring" viewBox="0 0 44 44">
+              <circle class="bg" cx="22" cy="22" r="18"></circle>
+              <circle class="fg" cx="22" cy="22" r="18" stroke-dasharray="113" stroke-dashoffset="113"></circle>
+            </svg>
+          </div>
+        </div>
+      </div>
+    </Feature>
+
+    <Feature
+      icon="tune"
+      label="03 — Three types of habits"
+      title="Check it, count it, time&nbsp;it."
+      body="A habit you can’t measure honestly is one you’ll quietly drop. Not everything is yes-or-no: eight glasses of water is a count, a study session is time. When the tracker fits the habit, logging stays truthful, and small wins like “20 minutes, not zero” get the credit they deserve."
+      why={[
+        "Check-ins for yes-or-no habits",
+        "Counters for things you repeat during the day",
+        "Timers with a daily goal for focused sessions",
+      ]}
+    >
+      <div class="stage" id="typesViz" data-reveal aria-hidden="true">
+        <div class="types">
+          <div class="type-row">
+            <span class="icon-chip" style="--c:var(--habit-lavender)"><span class="ms">psychology</span></span>
+            <div class="meta">
+              <span class="type-tag"><span class="ms" style="font-size:13px">check_circle</span>Check-in</span>
+              <span class="hname">Meditate</span>
+            </div>
+            <div class="type-act">
+              <span class="type-check"><span class="ms">check</span></span>
+            </div>
+          </div>
+          <div class="type-row">
+            <span class="icon-chip" style="--c:var(--habit-sky)"><span class="ms">water_drop</span></span>
+            <div class="meta">
+              <span class="type-tag"><span class="ms" style="font-size:13px">add_circle</span>Counter</span>
+              <span class="hname">Water</span>
+              <small>Goal: 8 glasses</small>
+            </div>
+            <div class="type-act">
+              <svg viewBox="0 0 52 52">
+                <circle cx="26" cy="26" r="22" stroke="rgba(115,173,255,.2)"></circle>
+                <circle
+                  data-count-ring
+                  cx="26"
+                  cy="26"
+                  r="22"
+                  stroke="var(--habit-sky)"
+                  stroke-dasharray="138.2"
+                  stroke-dashoffset="138.2"
+                  style="transition:stroke-dashoffset .25s"></circle>
+              </svg>
+              <span class="val" data-count>0</span>
+            </div>
+          </div>
+          <div class="type-row">
+            <span class="icon-chip" style="--c:var(--habit-mint)"><span class="ms">functions</span></span>
+            <div class="meta">
+              <span class="type-tag"><span class="ms" style="font-size:13px">timer</span>Timer</span>
+              <span class="hname">Math</span>
+              <small>Goal: 25 min</small>
+            </div>
+            <div class="type-act" style="width:64px">
+              <svg viewBox="0 0 52 52" style="left:6px;width:52px">
+                <circle cx="26" cy="26" r="22" stroke="rgba(115,224,199,.2)"></circle>
+                <circle
+                  data-timer-ring
+                  cx="26"
+                  cy="26"
+                  r="22"
+                  stroke="var(--habit-mint)"
+                  stroke-dasharray="138.2"
+                  stroke-dashoffset="138.2"></circle>
+              </svg>
+              <span class="val" data-timer style="font-size:13px">0:00</span>
+            </div>
+          </div>
+        </div>
+      </div>
+    </Feature>
+
+    <Feature
+      icon="folder"
+      label="04 — Habit groups"
+      title="Track the area, not just the&nbsp;item."
+      body="Habits stick when they serve who you want to become: a reader, a runner, someone who finishes the course. Groups bundle related habits under one area of life, with shared stats and a weekly grid. You can see how “Study” is going as a whole and spot the habit that needs a nudge."
+      why={[
+        "Identity-level progress, not a to-do list",
+        "Group consistency, streaks and best day at a glance",
+      ]}
+      flip
+    >
+      <div class="stage" id="groupViz" data-reveal aria-hidden="true">
+        <div class="group-card">
+          <div class="group-head">
+            <span class="icon-chip" style="--c:var(--habit-periwinkle);width:44px;height:44px">
+              <span class="ms">school</span>
+            </span>
+            <div class="t">
+              <b>Study<i class="led" data-gled></i></b>
+              <small>3 habits · this week</small>
+            </div>
+            <span class="gpill"><span class="ms o">check_circle</span><span data-gpill>0/3</span></span>
+          </div>
+          <div class="week">
+            <div class="week-h">
+              <span class="eyebrow">This week</span>
+              <small data-checkins>0 of 18 check-ins</small>
+            </div>
+            <div class="wrow days-h">
+              <span></span>
+              <span>M</span>
+              <span>T</span>
+              <span>W</span>
+              <span>T</span>
+              <span>F</span>
+              <span style="color:var(--habit-periwinkle)">S</span>
+              <span>S</span>
+              <span>%</span>
+            </div>
+            <div class="wrow" data-row style="--c:var(--habit-sky)">
+              <span class="n"><span class="ms">menu_book</span>Reading</span>
+              <span class="pct" style="color:var(--metric-excellent)">0</span>
+            </div>
+            <div class="wrow" data-row style="--c:var(--habit-mint)">
+              <span class="n"><span class="ms">functions</span>Math</span>
+              <span class="pct" style="color:var(--metric-good)">0</span>
+            </div>
+            <div class="wrow" data-row style="--c:var(--habit-periwinkle)">
+              <span class="n"><span class="ms">school</span>Coursera</span>
+              <span class="pct" style="color:var(--metric-good)">0</span>
+            </div>
+          </div>
+          <div class="gstats">
+            <div class="gstat">
+              <span class="eyebrow">Strongest day</span>
+              <b>Wednesday</b>
+              <small>3 of 3 done</small>
+            </div>
+            <div class="gstat">
+              <span class="eyebrow">Momentum</span>
+              <b><span class="ms" style="color:var(--metric-excellent)">trending_up</span>+33%</b>
+              <small>vs. previous 2 weeks</small>
+            </div>
+          </div>
+        </div>
+      </div>
+    </Feature>
+  </div>
+</section>

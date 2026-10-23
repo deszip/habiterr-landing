@@ -1,0 +1,28 @@
+---
+interface Props {
+  icon: string;
+  label: string;
+  /** HTML allowed, e.g. &nbsp; to keep the last words together */
+  title: string;
+  body: string;
+  why: string[];
+  flip?: boolean;
+}
+
+const { icon, label, title, body, why, flip = false } = Astro.props;
+---
+
+<article class:list={["feature", { flip }]}>
+  <div class="f-copy" data-reveal>
+    <span class="f-num eyebrow"><span class="ms" aria-hidden="true">{icon}</span>{label}</span>
+    <h3 set:html={title} />
+    <p>{body}</p>
+    <div class="why">
+      <span class="eyebrow">Why it matters</span>
+      <ul>
+        {why.map((item) => <li>{item}</li>)}
+      </ul>
+    </div>
+  </div>
+  <slot />
+</article>

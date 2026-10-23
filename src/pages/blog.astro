@@ -1,0 +1,243 @@
+---
+import Layout from "../layouts/Layout.astro";
+import Header from "../components/Header.astro";
+import Footer from "../components/Footer.astro";
+import AppStoreBadge from "../components/AppStoreBadge.astro";
+import { SOCIAL_LINKS } from "../consts";
+---
+
+<Layout
+  title="Blog — Habiterr"
+  description="Notes on habits, streaks and the research behind them. The Habiterr blog is coming soon."
+>
+  <Header />
+  <main id="main">
+    <section class="soon">
+      <div class="wrap">
+        <div class="soon-copy" data-reveal>
+          <span class="eyebrow">Blog · Under construction</span>
+          <h1>Still on day&nbsp;zero<span class="grad">.</span></h1>
+          <p>
+            We’re writing about habits, streaks and the research behind them. The first posts are
+            on their way.
+          </p>
+        </div>
+
+        <div class="stage soon-stage" id="soonViz" data-reveal aria-hidden="true">
+          <div class="matrix" data-matrix></div>
+          <div class="type-row soon-row">
+            <span class="icon-chip" style="--c:var(--habit-mint)"><span class="ms">edit_note</span></span>
+            <div class="meta">
+              <span class="type-tag"><span class="ms" style="font-size:13px">timer</span>In progress</span>
+              <span class="hname">Writing the first posts</span>
+              <small>Goal: publish</small>
+            </div>
+            <div class="type-act live" style="width:64px">
+              <svg viewBox="0 0 52 52" style="left:6px;width:52px">
+                <circle cx="26" cy="26" r="22" stroke="rgba(115,224,199,.2)"></circle>
+                <circle
+                  data-timer-ring
+                  cx="26"
+                  cy="26"
+                  r="22"
+                  stroke="var(--habit-mint)"
+                  stroke-dasharray="138.2"
+                  stroke-dashoffset="138.2"></circle>
+              </svg>
+              <span class="val" data-progress style="font-size:13px">0%</span>
+            </div>
+          </div>
+        </div>
+
+        <div class="soon-follow" data-reveal>
+          <span class="eyebrow">Meanwhile, follow along</span>
+          <div class="soon-links">
+            {
+              SOCIAL_LINKS.map(({ label, href }) => (
+                <a class="link-arrow" href={href}>
+                  {label}
+                  <span class="ms" aria-hidden="true">arrow_outward</span>
+                </a>
+              ))
+            }
+          </div>
+          <AppStoreBadge />
+        </div>
+      </div>
+    </section>
+  </main>
+  <Footer />
+</Layout>
+
+<script src="../scripts/site.js"></script>
+
+<script>
+  // 5×7 LED font — only the glyphs the ticker needs
+  const FONT: Record<string, string[]> = {
+    C: [".###.", "#...#", "#....", "#....", "#....", "#...#", ".###."],
+    O: [".###.", "#...#", "#...#", "#...#", "#...#", "#...#", ".###."],
+    M: ["#...#", "##.##", "#.#.#", "#.#.#", "#...#", "#...#", "#...#"],
+    I: ["###", ".#.", ".#.", ".#.", ".#.", ".#.", "###"],
+    N: ["#...#", "#...#", "##..#", "#.#.#", "#..##", "#...#", "#...#"],
+    G: [".###.", "#...#", "#....", "#.###", "#...#", "#...#", ".###."],
+    S: [".####", "#....", "#....", ".###.", "....#", "....#", "####."],
+    " ": ["..", "..", "..", "..", "..", "..", ".."],
+    "·": [".", ".", ".", "#", ".", ".", "."],
+  };
+  const ROWS = 7;
+  const PROGRESS = 72;
+  const RING = 138.2;
+  const reduce = matchMedia("(prefers-reduced-motion: reduce)").matches;
+
+  const blank = (): boolean[] => Array(ROWS).fill(false);
+  const toColumns = (text: string) =>
+    [...text].flatMap((ch) => {
+      const glyph = FONT[ch];
+      const cols = Array.from({ length: glyph[0].length }, (_, x) => glyph.map((row) => row[x] === "#"));
+      return [...cols, blank()];
+    });
+
+  const viz = document.querySelector<HTMLElement>("#soonViz");
+  const matrix = viz?.querySelector<HTMLElement>("[data-matrix]");
+
+  if (viz && matrix) {
+    const width = Math.max(24, Math.min(44, Math.round(matrix.clientWidth / 14)));
+    matrix.style.setProperty("--cols", String(width));
+    const cells = Array.from({ length: ROWS * width }, () =>
+      matrix.appendChild(document.createElement("i")),
+    );
+    const paint = (columns: boolean[][], offset: number) => {
+      for (let c = 0; c < width; c++) {
+        const col = columns[(offset + c) % columns.length];
+        for (let r = 0; r < ROWS; r++) cells[r * width + c].classList.toggle("on", col[r]);
+      }
+    };
+
+    const ring = viz.querySelector<SVGCircleElement>("[data-timer-ring]")!;
+    const value = viz.querySelector<HTMLElement>("[data-progress]")!;
+    const setProgress = (p: number) => {
+      ring.style.strokeDashoffset = String(RING * (1 - p / 100));
+      value.textContent = `${Math.round(p)}%`;
+    };
+
+    if (reduce) {
+      const word = toColumns("SOON");
+      const pad = Math.max(0, Math.floor((width - word.length) / 2));
+      paint([...Array.from({ length: pad }, blank), ...word, ...Array.from({ length: width }, blank)], 0);
+      setProgress(PROGRESS);
+    } else {
+      const ticker = toColumns("COMING SOON · ");
+      let offset = 0;
+      let timer: number | undefined;
+      let filled = false;
+      paint(ticker, 0);
+
+      new IntersectionObserver(
+        ([entry]) => {
+          if (entry.isIntersecting && timer === undefined) {
+            timer = window.setInterval(() => paint(ticker, ++offset), 80);
+            if (!filled) {
+              filled = true;
+              const t0 = performance.now();
+              const step = (now: number) => {
+                const k = Math.min(1, (now - t0) / 1600);
+                setProgress(PROGRESS * (1 - Math.pow(1 - k, 3)));
+                if (k < 1) requestAnimationFrame(step);
+              };
+              requestAnimationFrame(step);
+            }
+          } else if (!entry.isIntersecting && timer !== undefined) {
+            clearInterval(timer);
+            timer = undefined;
+          }
+        },
+        { threshold: 0.3 },
+      ).observe(viz);
+    }
+  }
+</script>
+
+<style>
+  .soon {
+    padding: 96px 0 var(--section-y);
+  }
+  .soon .wrap {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    gap: 56px;
+    text-align: center;
+  }
+  .soon-copy {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    gap: 20px;
+    max-width: 640px;
+  }
+  .soon h1 {
+    font-size: var(--display);
+    line-height: 0.98;
+    font-weight: var(--weight-bold);
+    letter-spacing: -0.035em;
+  }
+  .soon-copy p {
+    font-size: 20px;
+    line-height: var(--line-body);
+    color: var(--text-secondary);
+  }
+  .soon-stage {
+    width: 100%;
+    max-width: 720px;
+    min-height: 0;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    gap: 32px;
+  }
+  .matrix {
+    display: grid;
+    grid-template-columns: repeat(var(--cols, 40), minmax(0, 1fr));
+    gap: 3px;
+    width: 100%;
+  }
+  .matrix :global(i) {
+    aspect-ratio: 1;
+    border-radius: 50%;
+    background: var(--led-off);
+    opacity: 0.5;
+    transition: background 0.04s, box-shadow 0.04s, opacity 0.04s;
+  }
+  .matrix :global(i.on) {
+    background: var(--signal-core);
+    opacity: 1;
+    box-shadow: 0 0 4px rgba(41, 200, 255, 0.7);
+  }
+  .soon-row {
+    width: 100%;
+    max-width: 400px;
+    text-align: left;
+  }
+  .soon-follow {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    gap: 20px;
+  }
+  .soon-links {
+    display: flex;
+    flex-wrap: wrap;
+    justify-content: center;
+    gap: 12px 28px;
+  }
+  @media (max-width: 600px) {
+    .matrix {
+      gap: 2px;
+    }
+  }
+  @media (prefers-contrast: more) {
+    .matrix :global(i) {
+      box-shadow: none !important;
+    }
+  }
+</style>

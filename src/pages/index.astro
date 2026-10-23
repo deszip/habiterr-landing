@@ -1,20 +1,23 @@
 ---
 import Layout from "../layouts/Layout.astro";
-import Nav from "../components/Nav.astro";
+import Header from "../components/Header.astro";
 import Hero from "../components/Hero.astro";
-import ProblemSolution from "../components/ProblemSolution.astro";
-import FeatureHighlights from "../components/FeatureHighlights.astro";
-import MetricsExplainer from "../components/MetricsExplainer.astro";
+import Features from "../components/Features.astro";
+import Metrics from "../components/Metrics.astro";
+import Cta from "../components/Cta.astro";
 import Footer from "../components/Footer.astro";
 ---
 
 <Layout>
-  <Nav />
+  <Header />
   <main id="main">
     <Hero />
-    <ProblemSolution />
-    <FeatureHighlights />
-    <MetricsExplainer />
+    <Features />
+    <hr class="divider" />
+    <Metrics />
+    <Cta />
   </main>
   <Footer />
 </Layout>
+
+<script src="../scripts/site.js"></script>

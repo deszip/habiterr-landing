@@ -1,0 +1,45 @@
+<section id="metrics">
+  <div class="wrap">
+    <div class="sec-head" data-reveal>
+      <span class="eyebrow">The math, in plain English</span>
+      <h2>How the numbers actually work.</h2>
+      <p>No black box. Here’s exactly what every metric means, the formula behind it, and how to read the score.</p>
+    </div>
+    <div class="metrics-grid">
+      <div class="mcard" data-reveal>
+        <span class="label"><span class="ms" aria-hidden="true">percent</span>Consistency</span>
+        <h3>How often you actually show up.</h3>
+        <code class="formula">consistency = completed_days / scheduled_days</code>
+        <ul class="ranges">
+          <li><i style="--rc:var(--metric-excellent)"></i>80–100% · excellent</li>
+          <li><i style="--rc:var(--metric-good)"></i>50–79% · good</li>
+          <li><i style="--rc:var(--metric-needs-work)"></i>&lt; 50% · needs attention</li>
+        </ul>
+      </div>
+      <div class="mcard" data-reveal>
+        <span class="label"><span class="ms" aria-hidden="true">hub</span>Balance</span>
+        <h3>How evenly your effort is spread.</h3>
+        <p>We take the consistency of each habit, compute the standard deviation across them, then invert it into a 0–100 score.</p>
+        <code class="formula">balance = 100 × (1 − σ / σ_max)</code>
+        <p>Low spread → high balance. Six habits at 70% each will score higher than one at 100% and one at 0%.</p>
+      </div>
+      <div class="mcard" data-reveal>
+        <span class="label"><span class="ms" aria-hidden="true">local_fire_department</span>Gentle Streaks</span>
+        <h3>A streak that survives a bad week.</h3>
+        <p>Every active streak comes with a small tolerance budget — 10% of its length, rounded down, minimum one. Spend a miss; keep going.</p>
+        <code class="formula">tolerance = max(1, floor(streak × 0.10))</code>
+        <p>Example: a 47-day streak allows up to 4 missed days total. You’re rewarded for the long game.</p>
+      </div>
+      <div class="mcard" data-reveal>
+        <span class="label"><span class="ms" aria-hidden="true">emoji_events</span>Best Streak</span>
+        <h3>Milestones that mean something.</h3>
+        <p>Habiterr tracks your all-time best streak per habit and surfaces it as a quiet trophy. Beat it — or rebuild without losing the memory.</p>
+        <div class="miles">
+          <div><span class="ms" aria-hidden="true">emoji_events</span><b>7</b><small>Week</small></div>
+          <div><span class="ms" aria-hidden="true">emoji_events</span><b>30</b><small>Month</small></div>
+          <div><span class="ms" aria-hidden="true">emoji_events</span><b>100</b><small>Century</small></div>
+        </div>
+      </div>
+    </div>
+  </div>
+</section>

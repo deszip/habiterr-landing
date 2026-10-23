@@ -1,0 +1,87 @@
+/* Habiterr — Color tokens
+ * Ported 1:1 from Rose/Shared/AppColors.swift.
+ * Light mode is the default; a .dark scope carries the adaptive dark values.
+ * Habit palette + metrics are theme-independent (identical light & dark). */
+
+:root {
+  /* ---- Brand accent gradient (blue → purple) ----
+     Source: Chart.zoneBorderGradient / Timeline.selectedGradient (light) */
+  --accent-start: #5E82DB;   /* rgb(0.37,0.51,0.86) */
+  --accent-end:   #9C68CC;   /* rgb(0.61,0.41,0.80) */
+  --accent: #5E82DB;         /* solid accent = gradient start */
+  --accent-gradient: linear-gradient(135deg, var(--accent-start), var(--accent-end));
+  --accent-gradient-h: linear-gradient(90deg, var(--accent-start), var(--accent-end));
+  /* App-icon cyan (mark only — not used in UI chrome) */
+  --brand-cyan: #4FC3E8;
+
+  /* ---- Text ---- */
+  --text-primary:   #1C1C1E;              /* Color.primary (label) */
+  --text-secondary: rgba(60,60,67,0.60);  /* Color.secondary */
+  --text-tertiary:  #8E8E93;              /* systemGray */
+  --text-on-accent: #FFFFFF;              /* Semantic.onAccent */
+
+  /* ---- Backgrounds ---- */
+  --bg-primary:   #FFFFFF;  /* card / surface   Background.primary */
+  --bg-secondary: #F2F2F7;  /* screen           Background.secondary */
+  --bg-tertiary:  #FAFAFC;  /* elevated surface Background.tertiary */
+
+  /* ---- Overlay strokes (borders / separators / scrims) ---- */
+  --stroke-subtle: rgba(0,0,0,0.05);
+  --stroke-medium: rgba(0,0,0,0.08);
+  --stroke-strong: rgba(0,0,0,0.10);
+  --scrim:         rgba(0,0,0,0.20);
+  --topbar-shadow: rgba(0,0,0,0.08);
+
+  /* ---- Metrics (theme-independent, iOS system colors) ---- */
+  --metric-excellent: #34C759; /* green  */
+  --metric-good:      #FF9500; /* orange */
+  --metric-needs-work:#FF3B30; /* red    */
+
+  /* ---- Semantic ---- */
+  --destructive:    #FF3B30;
+  --destructive-bg: rgba(255,59,48,0.10);
+  --destructive-border: rgba(255,59,48,0.20);
+
+  /* ---- Habit palette (theme-independent, user-selectable) ---- */
+  --habit-lavender:   #B885F2;
+  --habit-peach:      #FFA66B;
+  --habit-sky:        #73ADFF;
+  --habit-sage:       #73D18C;
+  --habit-aqua:       #66D1E6;
+  --habit-rose:       #F28CA6;
+  --habit-coral:      #FF8073;
+  --habit-gold:       #FFD159;
+  --habit-mint:       #73E0C7;
+  --habit-periwinkle: #9485F2;
+
+  /* Chart zone fills (light, low-opacity brand tints) */
+  --chart-grid: rgba(128,128,128,0.12);
+  --chart-zone-start: rgba(110,146,230,0.22);
+  --chart-zone-end:   rgba(166,115,214,0.18);
+}
+
+/* ---- Dark mode (AppColors adaptive dark values) ---- */
+.dark {
+  --accent-start: #8CB3FF;   /* rgb(0.55,0.70,1.00) */
+  --accent-end:   #BF8CF2;   /* rgb(0.75,0.55,0.95) */
+  --accent: #8CB3FF;
+  --accent-gradient: linear-gradient(135deg, var(--accent-start), var(--accent-end));
+  --accent-gradient-h: linear-gradient(90deg, var(--accent-start), var(--accent-end));
+
+  --text-primary:   #FFFFFF;
+  --text-secondary: rgba(235,235,245,0.60);
+  --text-tertiary:  #8E8E93;
+
+  --bg-primary:   #212126;  /* rgb(0.13,0.13,0.15) */
+  --bg-secondary: #1C1C21;  /* rgb(0.11,0.11,0.13) */
+  --bg-tertiary:  #2B2B30;  /* rgb(0.17,0.17,0.19) */
+
+  --stroke-subtle: rgba(255,255,255,0.06);
+  --stroke-medium: rgba(255,255,255,0.10);
+  --stroke-strong: rgba(255,255,255,0.15);
+  --scrim:         rgba(0,0,0,0.30);
+  --topbar-shadow: rgba(0,0,0,0.30);
+
+  --chart-zone-start: rgba(140,179,255,0.22);
+  --chart-zone-end:   rgba(191,140,242,0.18);
+}

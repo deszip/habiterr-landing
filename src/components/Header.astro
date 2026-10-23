@@ -1,0 +1,18 @@
+---
+import Logo from "./Logo.astro";
+import { APP_STORE_URL } from "../consts";
+
+const onBlog = Astro.url.pathname.startsWith("/blog");
+---
+
+<nav class="nav" aria-label="Main">
+  <div class="wrap">
+    <Logo />
+    <div class="nav-links">
+      <a class="hide-sm" href="/#features">Features</a>
+      <a class="hide-sm" href="/#metrics">Metrics</a>
+      <a href="/blog" aria-current={onBlog ? "page" : undefined}>Blog</a>
+    </div>
+    <a class="btn" href={APP_STORE_URL}><span class="ms" aria-hidden="true">download</span>Get the app</a>
+  </div>
+</nav>

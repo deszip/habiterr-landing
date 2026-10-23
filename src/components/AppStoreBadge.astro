@@ -1,21 +1,7 @@
 ---
-interface Props {
-  href?: string;
-  height?: number;
-  label?: string;
-}
-const {
-  href = "https://apps.apple.com/us/app/habiterr/id6759457205",
-  height = 44,
-  label = "Download on the App Store",
-} = Astro.props;
+import { APP_STORE_URL } from "../consts";
 ---
 
-<a href={href} aria-label={label} class="appstore-badge" style={`height:${height}px;`}>
-  <img
-    src="/appstore/Download_on_the_App_Store_Badge_Light.svg"
-    alt={label}
-    style={`height:${height}px;`}
-    loading="lazy"
-  />
+<a class="badge-store" href={APP_STORE_URL}>
+  <img src="/appstore/Download_on_the_App_Store_Badge_Light.svg" alt="Download on the App Store" />
 </a>

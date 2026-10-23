@@ -1,37 +1,4 @@
----
-interface Props {
-  size?: number;
-  showWordmark?: boolean;
-}
-const { size = 28, showWordmark = true } = Astro.props;
----
-
-<a href="#top" class="inline-flex items-center gap-2 group">
-  <span
-    class="relative inline-flex items-center justify-center rounded-xl overflow-hidden"
-    style={`width:${size}px; height:${size}px;`}
-  >
-    <span
-      class="absolute inset-0 rounded-xl blur-md opacity-60 group-hover:opacity-90 transition-opacity"
-      style="background: radial-gradient(circle, rgba(77,217,192,0.45), transparent 70%);"
-    ></span>
-    <img
-      src="/icon/Habiterr-AppIcon-Dark.png"
-      width={size}
-      height={size}
-      alt=""
-      aria-hidden="true"
-      class="relative rounded-xl object-cover"
-    />
-  </span>
-  {
-    showWordmark && (
-      <span
-        class="font-display font-semibold text-[1.05rem] tracking-tight text-white"
-        style="font-family: var(--font-display);"
-      >
-        Habiterr
-      </span>
-    )
-  }
+<a class="brand" href="/">
+  <img src="/icon/app-icon.png" alt="" />
+  <span>Habiterr</span>
 </a>

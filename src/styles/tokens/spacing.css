@@ -1,0 +1,43 @@
+/* Habiterr — Spacing, radius, shadow tokens
+ * Ported from DesignSystem.Spacing / .Padding / .CornerRadius / AppColors.Shadow */
+
+:root {
+  /* Spacing scale */
+  --space-tiny:  4px;
+  --space-sm:    8px;
+  --space-md:    12px;
+  --space-lg:    16px;
+  --space-xl:    24px;
+
+  /* Semantic spacing */
+  --space-section: 16px;
+  --space-control: 10px;
+
+  /* Padding */
+  --pad-card:    12px;
+  --pad-btn-h:   8px;
+  --pad-btn-v:   6px;
+
+  /* Corner radius */
+  --radius-sm:   8px;   /* button */
+  --radius-md:   12px;  /* card */
+  --radius-lg:   16px;  /* chart container */
+  --radius-xl:   20px;
+  --radius-pill: 999px;
+
+  /* Shadows (AppColors.Shadow, light values) */
+  --shadow-small:  0 2px 4px rgba(0,0,0,0.04);
+  --shadow-card:   0 3px 8px rgba(0,0,0,0.06);
+  --shadow-medium: 0 2px 8px rgba(0,0,0,0.05);
+  --shadow-large:  0 4px 10px rgba(0,0,0,0.08);
+  /* Colored accent shadow (GradientButton) */
+  --shadow-accent: 0 4px 8px rgba(156,104,204,0.40);
+}
+
+.dark {
+  --shadow-small:  0 2px 4px rgba(0,0,0,0.05);
+  --shadow-card:   0 3px 8px rgba(0,0,0,0.35);
+  --shadow-medium: 0 2px 8px rgba(0,0,0,0.05);
+  --shadow-large:  0 4px 10px rgba(0,0,0,0.10);
+  --shadow-accent: 0 4px 8px rgba(191,140,242,0.40);
+}
